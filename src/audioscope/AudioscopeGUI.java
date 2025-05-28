@@ -4,6 +4,11 @@
  */
 package audioscope;
 
+import audioscope.ChordClasses.Augmented;
+import audioscope.ChordClasses.Diminished;
+import audioscope.ChordClasses.Sus2nd;
+import audioscope.ChordClasses.Major7th;
+
 /**
  *
  * @author albaz
@@ -79,7 +84,7 @@ public class AudioscopeGUI extends javax.swing.JFrame {
         //Controls notes playing
         double [] nowPlaying = new double[5]; //5 notes can play at a time
         
-        // Delete everything bellow here before commiting/pushing //
+        // Delete everything below here before commiting/pushing //
 
         // delete everything above this line before commiting/pushing//
         
