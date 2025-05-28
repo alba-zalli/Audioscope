@@ -5,7 +5,8 @@
 package audioscope;
 
 /**
- *
+ * May 28 2025
+ * Chord abstract class
  * @author albaz
  */
 public abstract class Chord {
@@ -30,9 +31,21 @@ public abstract class Chord {
     
     /**
      * Primary constructor
-     * @param baseFreq 
+     * @param baseFreq represents the inputted base note
      */
     public Chord(double baseFreq){
+        this.baseFreq=baseFreq;
+    }
+    
+    /**
+     * Secondary constructor
+     * @param baseFreq represents the inputted base note
+     * @param FREQ_RATIO1 represents the ratio to get a necessary harmonic frequency of this note
+     * @param FREQ_RATIO2 represents the ratio to get a necessary harmonic frequency of this note
+     */
+    public Chord(double baseFreq, double FREQ_RATIO1, double FREQ_RATIO2){
+        this.FREQ_RATIO1=FREQ_RATIO1;
+        this.FREQ_RATIO2=FREQ_RATIO2;
         this.baseFreq=baseFreq;
     }
     
@@ -65,7 +78,7 @@ public abstract class Chord {
      */
     public void createNotes(){
         this.note1= baseFreq *FREQ_RATIO1;
-        this.note2= baseFreq *FREQ_RATIO1;
+        this.note2= baseFreq *FREQ_RATIO2;
     }
     
     /**

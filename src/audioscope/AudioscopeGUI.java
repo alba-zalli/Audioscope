@@ -75,15 +75,16 @@ public class AudioscopeGUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         
-        // Delete everything bellow here before commiting/pushing //
-        
-        
-        // delete everything above this line before commiting/pushing//
-        
-        
         //Declare now playing array
         //Controls notes playing
         double [] nowPlaying = new double[5]; //5 notes can play at a time
+        
+        // Delete everything bellow here before commiting/pushing //
+
+        // delete everything above this line before commiting/pushing//
+        
+        
+
 
         
         /* Create and display the form */
