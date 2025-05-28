@@ -9,5 +9,80 @@ package audioscope;
  * @author albaz
  */
 public abstract class Chord {
+    /**
+     * Protected instance variables
+     */
+    private double baseFreq;
+    private double note1;
+    private double note2;
     
+    /**
+     * Constants for each concrete subclass
+     */
+    private static double FREQ_RATIO1;
+    private static double FREQ_RATIO2;
+    
+    /**
+     * Private class variables
+     */
+    private static double LOW_FREQ=20; //20 hertz is the lowest frequency heard by humans
+    private static double HIGH_FREQ=20000; //20,000 hertz is the highest frequency heard by humans
+    
+    /**
+     * Primary constructor
+     * @param baseFreq 
+     */
+    public Chord(double baseFreq){
+        this.baseFreq=baseFreq;
+    }
+    
+    /**
+     * Getter for base frequency
+     * @return int representing base frequency
+     */
+    public double getFreq(){
+        return baseFreq;
+    }
+    
+    /**
+     * Set frequency as long as its within the range of human hearing
+     * @return Boolean representing if frequency is successfully set
+     */
+    public boolean setFreq(double baseFreq){
+        if (baseFreq >= LOW_FREQ && baseFreq <= HIGH_FREQ)
+{
+            this.baseFreq=baseFreq;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+
+    /**
+     * Create notes that play harmoniously with base frequency
+     */
+    public void createNotes(){
+        this.note1= baseFreq *FREQ_RATIO1;
+        this.note2= baseFreq *FREQ_RATIO1;
+    }
+    
+    /**
+     * Add all notes to now playing array
+     * @param nowPlaying represents the array of notes currently playing
+     */
+    public void addNotes(double [] nowPlaying){
+        nowPlaying[0]=baseFreq;
+        nowPlaying[1]=note1;
+        nowPlaying[2]=note2;
+    }
+    
+    /**
+     * Remove notes to now playing array
+     * @param nowPlaying represents the array of notes currently playing
+     */
+    public void clearNotes(double [] nowPlaying){
+        nowPlaying=null; //clear notes in array
+    }
 }

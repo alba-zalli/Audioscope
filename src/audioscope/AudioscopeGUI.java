@@ -8,8 +8,10 @@ package audioscope;
  *
  * @author albaz
  */
-public class AudioscopeGUI extends javax.swing.JFrame {
 
+public class AudioscopeGUI extends javax.swing.JFrame {
+        
+    
      //commit locking it in
         //push from code is publishing it
         //pull from upstream is most recent version
@@ -76,7 +78,14 @@ public class AudioscopeGUI extends javax.swing.JFrame {
         // Delete everything bellow here before commiting/pushing //
         
         
-        // delete everything above this line befroe commiting/pushing//
+        // delete everything above this line before commiting/pushing//
+        
+        
+        //Declare now playing array
+        //Controls notes playing
+        double [] nowPlaying = new double[5]; //5 notes can play at a time
+
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
