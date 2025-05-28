@@ -72,7 +72,11 @@ public class AudioscopeGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AudioscopeGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        // Delete everything bellow here before commiting/pushing //
+        
+        
+        // delete everything above this line befroe commiting/pushing//
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
