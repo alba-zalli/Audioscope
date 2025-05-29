@@ -61,11 +61,15 @@ public abstract class Waveform {
     public void setStartPos(Vector2 startPos) {
         this.startPos = startPos;
     }
+    
+    public abstract void drawWave();
 
-    public abstract boolean equals();
+    public abstract boolean equals(Waveform otherWave);
 
-    public abstract boolean clone(Vector2 otherVec);
+    public abstract boolean clone(Waveform otherWave);
 
     public abstract String toString();
+    
+   
 
 }

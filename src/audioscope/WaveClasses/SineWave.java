@@ -20,7 +20,21 @@ public class SineWave extends Waveform {
     public SineWave(Vector2 startPos, int frequency, int amplitude, int speed){
         super(startPos, frequency, amplitude, speed);
     }
+    
+    public void drawWave(){
+    
+    }
+    
     public String toString(){
        return "Temp";
     }
+    
+    public boolean equals(Waveform otherWave){
+        return false; //Not functional yet
+    }
+    
+    public boolean clone(Waveform otherWave){
+        return false; //Not functional yet
+    }
+    
 }
