@@ -22,6 +22,9 @@ public class SineWave extends Waveform {
     public SineWave(Vector2 startPos, int frequency, int amplitude, int speed){
         super(startPos, frequency, amplitude, speed);
     }
+    public void drawWave(){
+    
+    }
     
     public void initilizePointList(int quality, int distance){
         int resolution = quality;
