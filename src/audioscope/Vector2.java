@@ -9,41 +9,81 @@ package audioscope;
  * @author AmAbd4146
  */
 public class Vector2 {
-    private float x;
-    private float y;
+    // Note floats are used instead of double as its more memory efficent and provides more then enough precision for most needs
     
-    public Vector2(float x, float y){
+
+    // Attributes
+    private float x; // X component of vector
+    private float y; // Y component of vector
+
+    /**
+     * Main constructor for vector2 class - Creates a 2D vector to storing 2
+     * values (x,y)
+     *
+     * @param x - X component of vector
+     * @param y - Y component of vector
+     */
+    public Vector2(float x, float y) {
         x = this.x;
         y = this.y;
     }
-    
-    public float getX(){
+
+    /**
+     * Getter for x component of vector
+     *
+     * @return
+     */
+    public float getX() {
         return x;
     }
-    
-    public float getY(){
+
+    /**
+     * Getter for y component of vector
+     *
+     * @return
+     */
+    public float getY() {
         return y;
     }
     
-    public void setX(float num){
+    /**
+     * Setter for x
+     * 
+     * @param num - The new value
+     */
+    public void setX(float num) {
         x = num;
     }
     
-    public void setY(float num){
+    /**
+     * Setter for y
+     * 
+     * @param num - The new value
+     */
+    public void setY(float num) {
         y = num;
     }
-    
-    public void addX(float num){
+    /**
+     * Adds a given value specifically to the x component
+     * @param num - The value to add
+     */
+    public void addX(float num) {
         x = x + num;
     }
-    
-    public void addY(float num){
+    /**
+     * Adds a given value specifically to the y component
+     * @param num - The value to add
+     */
+    public void addY(float num) {
         y = y + num;
     }
-    
-    public float magnitude(){
-        // Magnitude is pythagoreom theorem: c = square root of ( a^2  + b^2)
-        return (float) ( Math.sqrt( (Math.pow(x, 2) + Math.pow(y, 2)) ) );
+    /**
+     * Gets the magnitude of the Vector2 (The formula is the pythagorean theorem)  
+     * @return - Returns the vector magnitude as a float
+     */
+    public float magnitude() {
+        // Magnitude is pythagorean theorem: c = square root of ( a^2  + b^2)
+        return (float) (Math.sqrt((Math.pow(x, 2) + Math.pow(y, 2))));
     }
-    
+
 }
