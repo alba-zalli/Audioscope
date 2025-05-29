@@ -5,13 +5,15 @@
 package audioscope.WaveClasses;
 
 import audioscope.Vector2;
+import java.util.ArrayList;
 
 /**
  *
  * @author AmAbd4146
  */
 public class SineWave extends Waveform {
-
+    ArrayList<Vector2> points;
+    
     public SineWave(Vector2 startPos, int frequency){
         super(startPos, frequency);
     
@@ -21,7 +23,20 @@ public class SineWave extends Waveform {
         super(startPos, frequency, amplitude, speed);
     }
     
-    public void drawWave(){
+    public void initilizePointList(int quality, int distance){
+        int resolution = quality;
+        int dist = distance;
+        points = new ArrayList<Vector2>();
+        points.add(startPos);
+        for (int i = 1; i < resolution; i++) {
+            Vector2 lastPt = points.get(i - 1);
+            Vector2 newPt = new Vector2(lastPt.getX() + dist, (float) Math.sin(dist));
+            points.add(i, newPt);
+        }
+    
+    }
+    
+    public void drawPoints(){
     
     }
     
