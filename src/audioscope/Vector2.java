@@ -82,7 +82,7 @@ public class Vector2 {
      * @return - Returns the vector magnitude as a float
      */
     public float magnitude() {
-        // Magnitude is pythagorean theorem: c = square root of ( a^2  + b^2)
+        //Magnitude is pythagorean theorem: c = square root of ( a^2  + b^2)
         return (float) (Math.sqrt((Math.pow(x, 2) + Math.pow(y, 2))));
     }
 

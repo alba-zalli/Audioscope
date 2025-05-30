@@ -8,6 +8,11 @@ import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Stores animation logic
+ * May 29 2025
+ * @author albaz
+ */
 public class DrawingSurface extends JPanel {
 
     private int x = 0; //xcoordinate for animation
