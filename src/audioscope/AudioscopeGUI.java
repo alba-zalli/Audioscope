@@ -8,6 +8,11 @@ import audioscope.ChordClasses.Augmented;
 import audioscope.ChordClasses.Diminished;
 import audioscope.ChordClasses.Sus2nd;
 import audioscope.ChordClasses.Major7th;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import javax.swing.SwingConstants;
+
+
 
 /**
  *
@@ -114,11 +119,13 @@ public class AudioscopeGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        wrappingPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+
         javax.swing.GroupLayout wrappingPanelLayout = new javax.swing.GroupLayout(wrappingPanel);
         wrappingPanel.setLayout(wrappingPanelLayout);
         wrappingPanelLayout.setHorizontalGroup(
             wrappingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1017, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         wrappingPanelLayout.setVerticalGroup(
             wrappingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +137,11 @@ public class AudioscopeGUI extends javax.swing.JFrame {
         jLabel2.setText("Wave Type");
 
         buttonGroup3.add(jToggleButton1);
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audioscope/Icons/sawtoothWave.png"))); // NOI18N
         jToggleButton1.setText("Sawtooth");
+        jToggleButton1.setHorizontalTextPosition(SwingConstants.CENTER);
+        jToggleButton1.setVerticalTextPosition(SwingConstants.TOP);
+        jToggleButton1.setIconTextGap(5);
         jToggleButton1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +150,11 @@ public class AudioscopeGUI extends javax.swing.JFrame {
         });
 
         buttonGroup3.add(jToggleButton2);
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audioscope/Icons/sineWave.png"))); // NOI18N
         jToggleButton2.setText("Sine");
+        jToggleButton2.setHorizontalTextPosition(SwingConstants.CENTER);
+        jToggleButton2.setVerticalTextPosition(SwingConstants.TOP);
+        jToggleButton2.setIconTextGap(5);
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
@@ -147,7 +162,11 @@ public class AudioscopeGUI extends javax.swing.JFrame {
         });
 
         buttonGroup3.add(jToggleButton3);
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audioscope/Icons/triWave.png"))); // NOI18N
         jToggleButton3.setText("Triangle");
+        jToggleButton3.setHorizontalTextPosition(SwingConstants.CENTER);
+        jToggleButton3.setVerticalTextPosition(SwingConstants.TOP);
+        jToggleButton3.setIconTextGap(5);
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton3ActionPerformed(evt);
@@ -155,7 +174,11 @@ public class AudioscopeGUI extends javax.swing.JFrame {
         });
 
         buttonGroup3.add(jToggleButton4);
+        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/audioscope/Icons/squareWave.png"))); // NOI18N
         jToggleButton4.setText("Square");
+        jToggleButton4.setHorizontalTextPosition(SwingConstants.CENTER);
+        jToggleButton4.setVerticalTextPosition(SwingConstants.TOP);
+        jToggleButton4.setIconTextGap(5);
         jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton4ActionPerformed(evt);
@@ -172,7 +195,7 @@ public class AudioscopeGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -188,11 +211,12 @@ public class AudioscopeGUI extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jToggleButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                        .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -422,7 +446,7 @@ public class AudioscopeGUI extends javax.swing.JFrame {
                     .addComponent(jRadioButton21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton18)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -456,10 +480,10 @@ public class AudioscopeGUI extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(30, 30, 30)
                     .addComponent(chordToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1147, Short.MAX_VALUE)))
+                    .addContainerGap(1101, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(1184, Short.MAX_VALUE)
+                    .addContainerGap(1138, Short.MAX_VALUE)
                     .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(5, 5, 5)))
         );
@@ -491,12 +515,12 @@ public class AudioscopeGUI extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(42, 42, 42)
                     .addComponent(chordToggleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(640, Short.MAX_VALUE)))
+                    .addContainerGap(691, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(42, 42, 42)
                     .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(636, Short.MAX_VALUE)))
+                    .addContainerGap(687, Short.MAX_VALUE)))
         );
 
         pack();

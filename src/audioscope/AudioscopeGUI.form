@@ -66,12 +66,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="chordToggleButton" min="-2" pref="106" max="-2" attributes="0"/>
-                  <EmptySpace pref="1147" max="32767" attributes="0"/>
+                  <EmptySpace pref="1101" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="1184" max="32767" attributes="0"/>
+                  <EmptySpace pref="1138" max="32767" attributes="0"/>
                   <Component id="jToggleButton8" min="-2" pref="94" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               </Group>
@@ -112,14 +112,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="chordToggleButton" min="-2" pref="63" max="-2" attributes="0"/>
-                  <EmptySpace pref="640" max="32767" attributes="0"/>
+                  <EmptySpace pref="691" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="jToggleButton8" min="-2" pref="67" max="-2" attributes="0"/>
-                  <EmptySpace pref="636" max="32767" attributes="0"/>
+                  <EmptySpace pref="687" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -179,11 +179,18 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="wrappingPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.CompoundBorderInfo">
+            <CompoundBorder/>
+          </Border>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1017" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -211,7 +218,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jToggleButton2" min="-2" pref="81" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jToggleButton3" min="-2" pref="81" max="-2" attributes="0"/>
+                  <Component id="jToggleButton3" min="-2" pref="91" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jToggleButton4" min="-2" pref="81" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -230,12 +237,14 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jToggleButton4" pref="89" max="32767" attributes="0"/>
-                      <Component id="jToggleButton3" max="32767" attributes="0"/>
-                      <Component id="jToggleButton2" max="32767" attributes="0"/>
-                      <Component id="jToggleButton1" max="32767" attributes="0"/>
+                      <Component id="jToggleButton1" pref="96" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jToggleButton4" alignment="0" pref="96" max="32767" attributes="0"/>
+                          <Component id="jToggleButton2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jToggleButton3" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="61" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -251,7 +260,10 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Sawtooth"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/audioscope/Icons/sawtoothWave.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Sawtooth" postCode="jToggleButton1.setHorizontalTextPosition(SwingConstants.CENTER);&#xa;jToggleButton1.setVerticalTextPosition(SwingConstants.TOP);&#xa;jToggleButton1.setIconTextGap(5);"/>
             <Property name="verticalTextPosition" type="int" value="1"/>
           </Properties>
           <Events>
@@ -263,33 +275,51 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup3"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/audioscope/Icons/sineWave.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Sine"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton2ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jToggleButton2.setHorizontalTextPosition(SwingConstants.CENTER);&#xa;jToggleButton2.setVerticalTextPosition(SwingConstants.TOP);&#xa;jToggleButton2.setIconTextGap(5);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JToggleButton" name="jToggleButton3">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup3"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/audioscope/Icons/triWave.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Triangle"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton3ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jToggleButton3.setHorizontalTextPosition(SwingConstants.CENTER);&#xa;jToggleButton3.setVerticalTextPosition(SwingConstants.TOP);&#xa;jToggleButton3.setIconTextGap(5);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JToggleButton" name="jToggleButton4">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup3"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/audioscope/Icons/squareWave.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Square"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton4ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jToggleButton4.setHorizontalTextPosition(SwingConstants.CENTER);&#xa;jToggleButton4.setVerticalTextPosition(SwingConstants.TOP);&#xa;jToggleButton4.setIconTextGap(5);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -564,7 +594,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jRadioButton18" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
