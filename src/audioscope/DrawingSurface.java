@@ -1,5 +1,6 @@
 package audioscope;
 
+import audioscope.WaveClasses.SineWave;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -41,16 +42,11 @@ public class DrawingSurface extends JPanel {
 
         g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, getWidth(), getHeight());
-
-        g2d.setColor(Color.BLUE);
-        g2d.fillOval(x, 50, 30, 30); //(x, y, width, height)
-
-        g2d.setColor(Color.RED);
-        for (int i = 0; i < 100; i++) {
-            int px = (int) (Math.random() * getWidth());
-            int py = (int) (Math.random() * getHeight());
-            g2d.drawLine(px, py, px, py); //dots
-        }
+        
+        Vector2 startPt = new Vector2(20, 90);
+        SineWave test = new SineWave(startPt, 20);
+        
+        test.initilizePointList(g, 4, 10);
     }
 
     @Override

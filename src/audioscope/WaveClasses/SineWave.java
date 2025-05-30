@@ -5,6 +5,7 @@
 package audioscope.WaveClasses;
 
 import audioscope.Vector2;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 /**
@@ -26,17 +27,26 @@ public class SineWave extends Waveform {
     
     }
     
-    public void initilizePointList(int quality, int distance){
+    public void initilizePointList(Graphics g2d,int quality, int distance) {
         int resolution = quality;
         int dist = distance;
         points = new ArrayList<Vector2>();
         points.add(startPos);
+        
+        int waveLength = dist * resolution;
+        int addX = waveLength / resolution;
+        
         for (int i = 1; i < resolution; i++) {
+            
             Vector2 lastPt = points.get(i - 1);
-            Vector2 newPt = new Vector2(lastPt.getX() + dist, (float) Math.sin(dist));
-            points.add(i, newPt);
+            int newX = lastPt.getX() + addX;
+            int newY = (int) (Math.sin( ( (2 * Math.PI) / (waveLength) ) * newX ) * 40)+ lastPt.getY();
+            System.out.println(newY);
+            
+            points.add(i, new Vector2(newX, newY));
+            g2d.drawLine(lastPt.getX(), lastPt.getY(), newX, newY);
         }
-    
+
     }
     
     public void drawPoints(){
