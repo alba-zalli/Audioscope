@@ -60,9 +60,7 @@ public class SineWave extends Waveform {
             if (points.get(0).getX() > bounds) {
                 setOrigin(new Vector2(start, 0));//reset to start
             }
-
-        }
-        
+        }  
     }
     
 
@@ -76,6 +74,7 @@ public class SineWave extends Waveform {
         // Add startPos to first index
         points.add(startPos);
 
+        //add new points to list
         for (int i = 1; i <= totalResolution; i++) {
 
             Vector2 lastPt = points.get(i - 1);
@@ -89,10 +88,7 @@ public class SineWave extends Waveform {
             //Draw
             g2d.drawLine(lastPt.getX(), lastPt.getY(), newX, newY);
         }
-    }
-
-    public void drawPoints() {
-
+             
     }
 
     public String toString() {

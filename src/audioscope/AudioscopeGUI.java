@@ -21,18 +21,19 @@ import javax.sound.sampled.*;
  * @author albaz
  */
 public class AudioscopeGUI extends javax.swing.JFrame {
+private DrawingSurface surface;
 
     //commit locking it in
     //push from code is publishing it
     //pull from upstream is most recent version
-    
+        
     
     /**
      * Creates new form AudioscopeGUI
      */
     public AudioscopeGUI() {
         initComponents();
-        DrawingSurface surface = new DrawingSurface();
+        surface = new DrawingSurface();
         surface.setPreferredSize(new java.awt.Dimension(wrappingPanel.getWidth(), wrappingPanel.getHeight())); //match size of wrappingPanel 
         wrappingPanel.setLayout(new java.awt.BorderLayout());
         wrappingPanel.add(surface, java.awt.BorderLayout.CENTER);
@@ -550,10 +551,12 @@ public class AudioscopeGUI extends javax.swing.JFrame {
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         // TODO add your handling code here:
+        surface.getWaveType("Triangle");
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
+        surface.getWaveType("Sine");
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
