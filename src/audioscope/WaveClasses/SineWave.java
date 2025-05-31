@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class SineWave extends Waveform {
 
-    ArrayList<Vector2> points = new ArrayList<>();
+    public ArrayList<Vector2> points = new ArrayList<>();
 
     public SineWave(Vector2 startPos, int frequency) {
         super(startPos, frequency);
@@ -53,7 +53,6 @@ public class SineWave extends Waveform {
     }
 
     public void translateWave(Vector2 shiftVector, int bounds, int start) {
-
         for (int i = 0; i < points.size(); i++) {
             Vector2 currPoint = points.get(i);
             currPoint.add(shiftVector);
@@ -61,8 +60,11 @@ public class SineWave extends Waveform {
             if (points.get(0).getX() > bounds) {
                 setOrigin(new Vector2(start, 0));//reset to start
             }
+
         }
+        
     }
+    
 
     public void initilizePointList(Graphics g2d, int resolutionPerCycle, int waveLength, int cycles) {
         int C = startPos.getY(); // Vertical shift (baseline of the wave)
@@ -103,6 +105,10 @@ public class SineWave extends Waveform {
 
     public boolean clone(Waveform otherWave) {
         return false; //Not functional yet
+    }
+
+    public int getSpeed() {
+        return this.speed;
     }
 
 }

@@ -23,16 +23,17 @@ public class DrawingSurface extends JPanel {
     Vector2 origin = new Vector2(20, 100);
     int frequency = 100;
     int amplitude = 60;
-    int speed = 20;
+    int speed = 10;
     int waveLength = 500;
     int resolutionPerCycle = 100;
     
-    SineWave test = new SineWave(origin, frequency, amplitude, speed);
+    SineWave test;
 
     
     
     public DrawingSurface() {
         //60 fps
+        test = new SineWave(origin, frequency, amplitude, speed);
         timer = new Timer(16, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 updateAnimation();
@@ -60,9 +61,7 @@ public class DrawingSurface extends JPanel {
         g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, getWidth(), getHeight());
         g2d.setColor(Color.BLUE);
-        System.out.println(getWidth());
-        test.initilizePointList(g, resolutionPerCycle, waveLength, 4);
-        
+        test.initilizePointList(g, resolutionPerCycle, waveLength, speed);
         test.setOrigin(new Vector2(0,0));
     }
 

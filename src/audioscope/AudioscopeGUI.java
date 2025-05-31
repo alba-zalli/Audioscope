@@ -8,9 +8,11 @@ import audioscope.ChordClasses.Augmented;
 import audioscope.ChordClasses.Diminished;
 import audioscope.ChordClasses.Sus2nd;
 import audioscope.ChordClasses.Major7th;
+import audioscope.PlayWaveClasses.playSineWave;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import javax.swing.SwingConstants;
+import javax.sound.sampled.*;
 
 
 
@@ -23,6 +25,8 @@ public class AudioscopeGUI extends javax.swing.JFrame {
     //commit locking it in
     //push from code is publishing it
     //pull from upstream is most recent version
+    
+    
     /**
      * Creates new form AudioscopeGUI
      */
@@ -87,7 +91,6 @@ public class AudioscopeGUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -566,6 +569,7 @@ public class AudioscopeGUI extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
+        double frequencyInput = Double.parseDouble(jTextField1.getText());
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
@@ -595,6 +599,7 @@ public class AudioscopeGUI extends javax.swing.JFrame {
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -628,7 +633,10 @@ public class AudioscopeGUI extends javax.swing.JFrame {
         double[] nowPlaying = new double[5]; //5 notes can play at a time
 
         // Delete everything below here before commiting/pushing //
+
         // delete everything above this line before commiting/pushing//
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
