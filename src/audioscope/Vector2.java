@@ -9,7 +9,6 @@ package audioscope;
  * @author AmAbd4146
  */
 public class Vector2 {
-    
 
     // Attributes
     private int x; // X component of vector
@@ -44,40 +43,54 @@ public class Vector2 {
     public int getY() {
         return y;
     }
-    
+
     /**
      * Setter for x
-     * 
+     *
      * @param num - The new value
      */
     public void setX(int num) {
         x = num;
     }
-    
+
     /**
      * Setter for y
-     * 
+     *
      * @param num - The new value
      */
     public void setY(int num) {
         y = num;
     }
+
     /**
      * Adds a given value specifically to the x component
+     *
      * @param num - The value to add
      */
-    public void addX(int num) {
+    public int addX(int num) {
         x = x + num;
+        return x;
     }
+
+    public void add(Vector2 otherVec) {
+        x = x + otherVec.getX();
+        y = y + otherVec.getY();
+    }
+
     /**
      * Adds a given value specifically to the y component
+     *
      * @param num - The value to add
      */
-    public void addY(int num) {
+    public int addY(int num) {
         y = y + num;
+        return y;
     }
+
     /**
-     * Gets the magnitude of the Vector2 (The formula is the pythagorean theorem)  
+     * Gets the magnitude of the Vector2 (The formula is the pythagorean
+     * theorem)
+     *
      * @return - Returns the vector magnitude as a float
      */
     public int magnitude() {
