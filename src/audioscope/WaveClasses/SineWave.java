@@ -66,7 +66,7 @@ public class SineWave extends Waveform {
     public void animate(int waveLength) {
         // Shifts the origin point, since the draw function is being called each frame, the sinewave will then be recreated with this new origin point which "moves" it! 
         startPos.addX(speed);
-        
+               
         if (startPos.getX() >= -waveLength) { // Must be -waveLength to prevent the ends of the wave from showing
             startPos.setX(-waveLength * 2); // * 2 so its always 1 cycle away from -waveLength
 

@@ -549,6 +549,7 @@ private DrawingSurface surface;
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
         // TODO add your handling code here:
+        surface.getWaveType("Square");
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
@@ -563,6 +564,7 @@ private DrawingSurface surface;
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        surface.getWaveType("Sawtooth");
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void manualToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manualToggleButtonActionPerformed
@@ -574,7 +576,8 @@ private DrawingSurface surface;
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-        double frequencyInput = Double.parseDouble(jTextField1.getText());
+        int freqInput = Integer.parseInt(jTextField1.getText());
+        surface.getFrequency( freqInput);
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
