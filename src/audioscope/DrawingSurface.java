@@ -29,6 +29,12 @@ public class DrawingSurface extends JPanel {
     private boolean sineWave;
     SineWave w1;
 
+    public void getProjectMode(boolean chordMode){ //true is chord mode, false is manual
+        if(chordMode){
+            
+        }
+    }
+    
     public void getWaveType(String waveType) {
         if (waveType.equals("Sine")) { //if the wave is a sine wave
             sineWave = true;
@@ -47,7 +53,6 @@ public class DrawingSurface extends JPanel {
 
     public DrawingSurface() {
         //60 fps
-
         timer = new Timer(16, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 updateAnimation();

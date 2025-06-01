@@ -540,9 +540,11 @@ private DrawingSurface surface;
 
     private void chordToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chordToggleButtonActionPerformed
         // TODO add your handling code here:
-        chordPanel2.setVisible(true);
+        chordPanel2.setVisible(true); //allows modification of the chord panel
         chordPanel2.getParent().revalidate();
         chordPanel2.getParent().repaint();
+        //allows waves to play in a chord format
+        
     }//GEN-LAST:event_chordToggleButtonActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
