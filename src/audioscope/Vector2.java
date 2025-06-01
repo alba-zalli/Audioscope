@@ -95,7 +95,7 @@ public class Vector2 {
      */
     public int magnitude() {
         // Magnitude is pythagorean theorem: c = square root of ( a^2  + b^2)
-        return (int) (Math.sqrt((Math.pow(x, 2) + Math.pow(y, 2))));
+        return (int)(Math.sqrt((Math.pow(x, 2) + Math.pow(y, 2))));
     }
 
 }

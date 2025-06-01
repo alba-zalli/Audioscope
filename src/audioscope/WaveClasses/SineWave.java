@@ -60,18 +60,38 @@ public class SineWave extends Waveform {
             if (points.get(0).getX() > bounds) {
                 setOrigin(new Vector2(start, 0));//reset to start
             }
-        }  
+        }
+    }
+
+    public void animate(int waveLength) {
+        // Shifts the origin point, since the draw function is being called each frame, the sinewave will then be recreated with this new origin point which "moves" it! 
+        startPos.addX(speed);
+        
+        if (startPos.getX() >= -waveLength) { // Must be -waveLength to prevent the ends of the wave from showing
+            startPos.setX(-waveLength * 2); // * 2 so its always 1 cycle away from -waveLength
+
+        }
+
     }
     
+    public void shiftPoints(int x){
+        
+        for (int i = 0; i < points.size(); i++) {
+            points.get(i).addX(x);
+            
+        }
+    
+    }
 
     public void initilizePointList(Graphics g2d, int resolutionPerCycle, int waveLength, int cycles) {
         int C = startPos.getY(); // Vertical shift (baseline of the wave)
         double K = (2 * Math.PI) / waveLength; // Frequency constant for 1 cycle
-        int totalResolution = resolutionPerCycle * cycles; // More points = smoother wave
+        int totalResolution = resolutionPerCycle * cycles; // Adjusts for the amount of points to generate by the defined amount of cycles it should coveer
         int increment = waveLength / resolutionPerCycle; // Horizontal distance between points
         int D = startPos.getX(); // Horizontal offset
 
         // Add startPos to first index
+        points.clear();
         points.add(startPos);
 
         //add new points to list
@@ -88,7 +108,7 @@ public class SineWave extends Waveform {
             //Draw
             g2d.drawLine(lastPt.getX(), lastPt.getY(), newX, newY);
         }
-             
+
     }
 
     public String toString() {

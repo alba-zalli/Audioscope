@@ -5,6 +5,7 @@
 package audioscope.WaveClasses;
 
 import audioscope.Vector2;
+import java.awt.Graphics;
 
 /**
  *

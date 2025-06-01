@@ -22,7 +22,7 @@ public class DrawingSurface extends JPanel {
     Vector2 origin = new Vector2(20, 100);
     int frequency = 100;
     int amplitude = 60;
-    int speed = 10;
+    int speed = 50;
     int waveLength = 500;
     int resolutionPerCycle = 100;
 
@@ -58,7 +58,8 @@ public class DrawingSurface extends JPanel {
 
     private void updateAnimation() {
         if (sineWave) {
-            w1.translateWave(new Vector2(w1.getSpeed(), 0), getWidth(), 0);
+            //w1.translateWave(new Vector2(w1.getSpeed(), 0), getWidth(), 0);
+            w1.animate(waveLength);
         }
     }
 
@@ -69,7 +70,6 @@ public class DrawingSurface extends JPanel {
         g2d.setColor(Color.BLUE);
         if (sineWave) {
             w1.initilizePointList(g, resolutionPerCycle, waveLength, speed);
-            w1.setOrigin(new Vector2(0, 0));
         }
     }
 
