@@ -15,21 +15,19 @@ import java.util.ArrayList;
 public class SineWave extends Waveform {
 
     //public ArrayList<Vector2> points = new ArrayList<>();
-
-    public SineWave(Vector2 origin, int frequency) {
+    public SineWave(Vector2 origin, double frequency) {
         super(origin, frequency);
 
     }
 
-    public SineWave(Vector2 origin, int frequency, int amplitude, int speed, float waveLength) {
+    public SineWave(Vector2 origin, double frequency, int amplitude, int speed, float waveLength) {
         super(origin, frequency, amplitude, speed, waveLength);
     }
-
 
     public void initilizePointList(int resolutionPerCycle, float cycles) {
         float displayCycles = cycles + 3.0f; // The cycles param accepts the amount of full cycles that fills the screen, but we need to add 1 more so when it updates it doesnt go off screen for a bit, and then + 2 more just in case.
         float C = origin.getY(); // Vertical shift (baseline of the wave)
-        float K = (float) ( (2 * Math.PI) / waveLength); // Frequency constant for 1 cycle
+        float K = (float) ((2 * Math.PI) / waveLength); // Frequency constant for 1 cycle
         float totalResolution = resolutionPerCycle * displayCycles; // Adjusts for the amount of points to generate by the defined amount of cycles it should coveer
         float increment = waveLength / resolutionPerCycle; // Horizontal distance between points
         float D = origin.getX(); // The sine graphs Horizontal offset
@@ -42,7 +40,7 @@ public class SineWave extends Waveform {
         for (int i = 1; i <= totalResolution; i++) {
             // Gets the previous point in the list (reminder, this loop starts at 1 instead of zero)
             Vector2 previousPt = points.get(i - 1);
-           
+
             float newX = (previousPt.getX() + increment); // We do this so each point is evenely spaced out from eachother giving us the next x value to input into the sine function bellow
             float newY = (float) (amplitude * Math.sin(K * (newX - D)) + C); //This is the sine function. This will determine our point along the y - axis
 
@@ -51,7 +49,8 @@ public class SineWave extends Waveform {
         }
         System.out.println("Point list reached initilization for sine wave"); // Debugging statement
     }
-            //startPos, int frequency, int amplitude, int speed, float waveLength
+    //startPos, int frequency, int amplitude, int speed, float waveLength
+
     public String toString() {
         return ("Type: Sine Wave"
                 + "\n[Origin] :" + origin.toString()
@@ -65,7 +64,9 @@ public class SineWave extends Waveform {
         return false; //Not functional yet
     }
 
-    public boolean clone(Waveform otherWave) {
-        return false; //Not functional yet
+    public Waveform clone() {
+        //DUMMY CODE
+        Vector2 originCopy = new Vector2(this.origin.getX(), this.origin.getY());
+        return new SineWave(originCopy, this.frequency, this.amplitude, this.speed, this.waveLength);
     }
 }

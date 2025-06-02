@@ -105,6 +105,18 @@ public abstract class Chord {
         this.note2 = baseFreq * FREQ_RATIO2;
         this.note3 = baseFreq * FREQ_RATIO3;
     }
+    
+    public double getNote1(){
+        return note1;
+    }
+    
+    public double getNote2(){
+        return note2;
+    }
+    
+    public double getNote3(){
+        return note3;
+    }
 
     /**
      * Add all notes to now playing array

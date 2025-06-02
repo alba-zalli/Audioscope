@@ -75,8 +75,22 @@ public class TriangleWave extends Waveform {
         return false; //Not functional yet
     }
 
-    public boolean clone(Waveform otherWave) {
-        return false; //Not functional yet
+    public Waveform clone() {
+         //NOT WORKING!!!!!!!!!
+        SineWave copy = new SineWave(
+                new Vector2(this.origin.getX(), this.origin.getY()),
+                this.frequency,
+                this.amplitude,
+                this.speed,
+                this.waveLength
+        );
+
+        // Deep copy of the points list
+        for (Vector2 point : this.points) {
+            copy.points.add(new Vector2(point.getX(), point.getY()));
+        }
+
+        return copy;
     }
 }
 

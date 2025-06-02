@@ -83,7 +83,6 @@ private DrawingSurface surface;
         jRadioButton15 = new javax.swing.JRadioButton();
         jRadioButton16 = new javax.swing.JRadioButton();
         jRadioButton17 = new javax.swing.JRadioButton();
-        jRadioButton18 = new javax.swing.JRadioButton();
         jRadioButton19 = new javax.swing.JRadioButton();
         jRadioButton20 = new javax.swing.JRadioButton();
         jRadioButton21 = new javax.swing.JRadioButton();
@@ -216,10 +215,9 @@ private DrawingSurface surface;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jToggleButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
@@ -371,14 +369,6 @@ private DrawingSurface surface;
             }
         });
 
-        buttonGroup4.add(jRadioButton18);
-        jRadioButton18.setText("Diminished");
-        jRadioButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
-            }
-        });
-
         buttonGroup4.add(jRadioButton19);
         jRadioButton19.setText("Diminished");
         jRadioButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -410,13 +400,8 @@ private DrawingSurface surface;
             .addGroup(chordPanel2Layout.createSequentialGroup()
                 .addGroup(chordPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chordPanel2Layout.createSequentialGroup()
-                        .addGroup(chordPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(chordPanel2Layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(jLabel11))
-                            .addGroup(chordPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jRadioButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(117, 117, 117)
+                        .addComponent(jLabel11)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(chordPanel2Layout.createSequentialGroup()
                         .addContainerGap()
@@ -448,8 +433,6 @@ private DrawingSurface surface;
                 .addGroup(chordPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton17)
                     .addComponent(jRadioButton21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton18)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -582,30 +565,32 @@ private DrawingSurface surface;
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
         // TODO add your handling code here:
+        surface.getChordType("Major7th");
     }//GEN-LAST:event_jRadioButton7ActionPerformed
 
     private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
         // TODO add your handling code here:
+        surface.getChordType("Sus2nd");
     }//GEN-LAST:event_jRadioButton6ActionPerformed
 
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
         // TODO add your handling code here:
+        surface.getChordType("Diminished");
     }//GEN-LAST:event_jRadioButton5ActionPerformed
-
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
+        surface.getChordType("Augmented");
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
+        surface.getChordType("Minor");
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
+        surface.getChordType("Major");
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
 
@@ -658,55 +643,27 @@ private DrawingSurface surface;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.JPanel chordPanel;
-    private javax.swing.JPanel chordPanel1;
     private javax.swing.JPanel chordPanel2;
     private javax.swing.JToggleButton chordToggleButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton12;
-    private javax.swing.JRadioButton jRadioButton13;
-    private javax.swing.JRadioButton jRadioButton14;
     private javax.swing.JRadioButton jRadioButton15;
     private javax.swing.JRadioButton jRadioButton16;
     private javax.swing.JRadioButton jRadioButton17;
-    private javax.swing.JRadioButton jRadioButton18;
     private javax.swing.JRadioButton jRadioButton19;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton20;
     private javax.swing.JRadioButton jRadioButton21;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JSlider jSlider3;
-    private javax.swing.JSlider jSlider4;
     private javax.swing.JSlider jSlider5;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;

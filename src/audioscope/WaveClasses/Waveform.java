@@ -14,14 +14,14 @@ import java.util.ArrayList;
  */
 public abstract class Waveform {
 
-    protected int frequency;
+    protected double frequency;
     protected int amplitude;
     protected int speed;
     protected ArrayList<Vector2> points = new ArrayList<>();
     protected float waveLength;
     protected Vector2 origin;
 
-    public Waveform(Vector2 origin, int frequency) {
+    public Waveform(Vector2 origin, double frequency) {
         this.frequency = frequency;
         this.origin = origin;
         speed = 10;
@@ -29,18 +29,18 @@ public abstract class Waveform {
 
     }
 
-    public Waveform(Vector2 origin, int frequency, int amplitude, int speed, float waveLength) {
+    public Waveform(Vector2 origin, double frequency, int amplitude, int speed, float waveLength) {
         this(origin, frequency);
         this.amplitude = amplitude;
         this.speed = speed;
         this.waveLength = waveLength;
     }
 
-    public int getFrequency() {
+    public double getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(int frequency) {
+    public void setFrequency(double frequency) {
         this.frequency = frequency;
     }
 
@@ -114,7 +114,7 @@ public abstract class Waveform {
     //public abstract void initilizePointList(int resolutionPerCycle, float cycles);
     public abstract boolean equals(Waveform otherWave);
 
-    public abstract boolean clone(Waveform otherWave);
+    public abstract Waveform clone();
 
     public abstract String toString();
 

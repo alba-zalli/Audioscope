@@ -1,5 +1,11 @@
 package audioscope;
 
+import audioscope.ChordClasses.Augmented;
+import audioscope.ChordClasses.Diminished;
+import audioscope.ChordClasses.Major;
+import audioscope.ChordClasses.Major7th;
+import audioscope.ChordClasses.Minor;
+import audioscope.ChordClasses.Sus2nd;
 import audioscope.WaveClasses.SawtoothWave;
 import audioscope.WaveClasses.SineWave;
 import audioscope.WaveClasses.TriangleWave;
@@ -31,49 +37,127 @@ public class DrawingSurface extends JPanel {
     float cycles;
     int resolutionPerCycle = 30;
 
+    //tracks wave type
     boolean isSine;
     boolean isTriangle;
     boolean isSawtooth;
     boolean selectedWave;
 
+    //tracks chord type
     long lastTime = System.nanoTime();
 
-    SineWave sine1;
-    TriangleWave triangle1;
-    SawtoothWave sawtooth1;
+    SineWave sine1, sine2, sine3;
+    TriangleWave triangle1, triangle2, triangle3;
+    SawtoothWave sawtooth1, sawtooth2, sawtooth3;
+
+    public void getChordType(String chordType) {
+        if (chordType.equals("Major") && sine1 != null) {
+            System.out.println("Major");
+            Major chord = new Major(frequency);
+            chord.createNotes();
+            float width = getWidth();           
+            sine2 = (SineWave) sine1.clone();
+            sine2.setFrequency(chord.getNote1());
+            sine2.setWaveLength((float) speed / (float) chord.getNote1());
+            sine2.initilizePointList(resolutionPerCycle, width / sine2.getWaveLength() * 2);
+            sine3 = (SineWave) sine1.clone();
+            sine3.setFrequency(chord.getNote2());
+            sine3.setWaveLength((float) speed / (float) chord.getNote2());
+            sine3.initilizePointList(resolutionPerCycle, width / sine3.getWaveLength() * 2);
+        }
+        else if(chordType.equals("Minor") && sine1 != null){
+            System.out.println("Minor");
+            Minor chord = new Minor(frequency);
+            chord.createNotes();
+            float width = getWidth();          
+            sine2 = (SineWave) sine1.clone();
+            sine2.setFrequency(chord.getNote1());
+            sine2.setWaveLength((float) speed / (float) chord.getNote1());
+            sine2.initilizePointList(resolutionPerCycle, width / sine2.getWaveLength() * 2);
+            sine3 = (SineWave) sine1.clone();
+            sine3.setFrequency(chord.getNote2());
+            sine3.setWaveLength((float) speed / (float) chord.getNote2());
+            sine3.initilizePointList(resolutionPerCycle, width / sine3.getWaveLength() * 2);
+        }
+        else if(chordType.equals("Diminished") && sine1 != null){
+            System.out.println("Diminished");
+            Diminished chord = new Diminished(frequency);
+            chord.createNotes();
+            float width = getWidth();          
+            sine2 = (SineWave) sine1.clone();
+            sine2.setFrequency(chord.getNote1());
+            sine2.setWaveLength((float) speed / (float) chord.getNote1());
+            sine2.initilizePointList(resolutionPerCycle, width / sine2.getWaveLength() * 2);
+            sine3 = (SineWave) sine1.clone();
+            sine3.setFrequency(chord.getNote2());
+            sine3.setWaveLength((float) speed / (float) chord.getNote2());
+            sine3.initilizePointList(resolutionPerCycle, width / sine3.getWaveLength() * 2);
+        }
+        else if(chordType.equals("Augmented") && sine1 != null){
+            System.out.println("Augmented");
+            Augmented chord = new Augmented(frequency);
+            chord.createNotes();
+            float width = getWidth();          //make class for all this repeated code
+            sine2 = (SineWave) sine1.clone();
+            sine2.setFrequency(chord.getNote1());
+            sine2.setWaveLength((float) speed / (float) chord.getNote1());
+            sine2.initilizePointList(resolutionPerCycle, width / sine2.getWaveLength() * 2);
+            sine3 = (SineWave) sine1.clone();
+            sine3.setFrequency(chord.getNote2());
+            sine3.setWaveLength((float) speed / (float) chord.getNote2());
+            sine3.initilizePointList(resolutionPerCycle, width / sine3.getWaveLength() * 2);
+        }
+        else if(chordType.equals("Major7th") && sine1 != null){ // add 4th note option!!
+            System.out.println("Major7th");
+            Major7th chord = new Major7th(frequency);
+            chord.createNotes();
+            float width = getWidth();          
+            sine2 = (SineWave) sine1.clone();
+            sine2.setFrequency(chord.getNote1());
+            sine2.setWaveLength((float) speed / (float) chord.getNote1());
+            sine2.initilizePointList(resolutionPerCycle, width / sine2.getWaveLength() * 2);
+            sine3 = (SineWave) sine1.clone();
+            sine3.setFrequency(chord.getNote2());
+            sine3.setWaveLength((float) speed / (float) chord.getNote2());
+            sine3.initilizePointList(resolutionPerCycle, width / sine3.getWaveLength() * 2);
+        }
+        else{
+            System.out.println("Sus2nd");
+            Sus2nd chord = new Sus2nd(frequency);
+            chord.createNotes();
+            float width = getWidth();          
+            sine2 = (SineWave) sine1.clone();
+            sine2.setFrequency(chord.getNote1());
+            sine2.setWaveLength((float) speed / (float) chord.getNote1());
+            sine2.initilizePointList(resolutionPerCycle, width / sine2.getWaveLength() * 2);
+            sine3 = (SineWave) sine1.clone();
+            sine3.setFrequency(chord.getNote2());
+            sine3.setWaveLength((float) speed / (float) chord.getNote2());
+            sine3.initilizePointList(resolutionPerCycle, width / sine3.getWaveLength() * 2);
+        }
+    }
 
     public void getFrequency(int freq) {
         System.out.println(freq);
         this.frequency = freq;
         this.waveLength = speed / freq;
         this.cycles = getWidth() / waveLength * 2;
-
         if (isSine && sine1 != null) {
             sine1.setFrequency(freq);
             sine1.setWaveLength(waveLength);
             sine1.initilizePointList(resolutionPerCycle, cycles);
-        }
-
-        // You can add support for triangle and sawtooth too
-        if (isTriangle && triangle1 != null) {
-            triangle1.setFrequency(freq); // Assuming your TriangleWave has this
+        } else if (isTriangle && triangle1 != null) {
+            triangle1.setFrequency(freq);
             triangle1.setWaveLength(waveLength);
             triangle1.initilizePointList(cycles);
-        }
-
-        if (isSawtooth && sawtooth1 != null) {
+        } else if (isSawtooth && sawtooth1 != null) {
             sawtooth1.setFrequency(freq);
             sawtooth1.setWaveLength(waveLength);
             sawtooth1.initilizePointList(cycles);
-        }
+        } else { //its square
 
+        }
         repaint();
-    }
-
-    public void getProjectMode(boolean chordMode) { //true is chord mode, false is manual
-        if (chordMode) {
-
-        }
     }
 
     public void getWaveType(String waveType) {
@@ -137,8 +221,17 @@ public class DrawingSurface extends JPanel {
          */
         long currentTime = System.nanoTime();
         float deltaTime = (currentTime - lastTime) / 1_000_000_000.0f;
+
         if (isSine) {
-            sine1.animate(deltaTime);
+            if (sine1 != null) {
+                sine1.animate(deltaTime);
+            }
+            if (sine2 != null) {
+                sine2.animate(deltaTime);
+            }
+            if (sine3 != null) {
+                sine3.animate(deltaTime);
+            }
 
             lastTime = currentTime;
 
@@ -163,7 +256,19 @@ public class DrawingSurface extends JPanel {
             w1.initilizePointList(g, resolutionPerCycle, waveLength);
          */
         if (isSine) {
-            sine1.drawWave(g2d);
+            if (sine1 != null) {
+                g2d.setColor(Color.BLUE);
+                sine1.drawWave(g2d);
+            }
+            if (sine2 != null) {
+                g2d.setColor(Color.RED);
+                sine2.drawWave(g2d);
+            }
+            if (sine3 != null) {
+                g2d.setColor(Color.GREEN);
+                sine3.drawWave(g2d);
+            }
+
         } else if (isTriangle) {
             triangle1.drawWave(g2d);
         } else if (isSawtooth) {
