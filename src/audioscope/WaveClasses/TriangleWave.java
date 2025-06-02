@@ -27,8 +27,8 @@ public class TriangleWave extends Waveform {
      * @param speed
      * @param waveLength
      */
-    public TriangleWave(Vector2 origin, int frequency, int amplitude, int speed, float waveLength) {
-        super(origin, frequency, amplitude, speed, waveLength);
+    public TriangleWave(Vector2 origin, int frequency, float amplitude, float speed, float waveLength, float scaleFactor) {
+        super(origin, frequency, amplitude, speed, waveLength, scaleFactor);
     }
 
     public void initilizePointList(float cycles) {
