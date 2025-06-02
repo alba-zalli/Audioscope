@@ -11,8 +11,8 @@ package audioscope;
 public class Vector2 {
 
     // Attributes
-    private int x; // X component of vector
-    private int y; // Y component of vector
+    private float x; // X component of vector
+    private float y; // Y component of vector
 
     /**
      * Main constructor for vector2 class - Creates a 2D vector to storing 2
@@ -21,7 +21,7 @@ public class Vector2 {
      * @param x - X component of vector
      * @param y - Y component of vector
      */
-    public Vector2(int x, int y) {
+    public Vector2(float x, float y) {
         this.x = x;
         this.y = y;
     }
@@ -31,7 +31,7 @@ public class Vector2 {
      *
      * @return
      */
-    public int getX() {
+    public float getX() {
         return x;
     }
 
@@ -40,7 +40,7 @@ public class Vector2 {
      *
      * @return
      */
-    public int getY() {
+    public float getY() {
         return y;
     }
 
@@ -49,7 +49,7 @@ public class Vector2 {
      *
      * @param num - The new value
      */
-    public void setX(int num) {
+    public void setX(float num) {
         x = num;
     }
 
@@ -59,7 +59,7 @@ public class Vector2 {
      * @param num - The new value
      */
     public void setY(int num) {
-        y = num;
+        y += num;
     }
 
     /**
@@ -67,14 +67,8 @@ public class Vector2 {
      *
      * @param num - The value to add
      */
-    public int addX(int num) {
-        x = x + num;
-        return x;
-    }
-
-    public void add(Vector2 otherVec) {
-        x = x + otherVec.getX();
-        y = y + otherVec.getY();
+    public void addX(float num) {
+        x += num;
     }
 
     /**
@@ -82,9 +76,13 @@ public class Vector2 {
      *
      * @param num - The value to add
      */
-    public int addY(int num) {
+    public void addY(float num) {
         y = y + num;
-        return y;
+    }
+
+    public void add(Vector2 otherVec) {
+        x += otherVec.getX();
+        y += otherVec.getY();
     }
 
     /**
@@ -93,9 +91,14 @@ public class Vector2 {
      *
      * @return - Returns the vector magnitude as a float
      */
-    public int magnitude() {
+    public float magnitude() {
         // Magnitude is pythagorean theorem: c = square root of ( a^2  + b^2)
-        return (int)(Math.sqrt((Math.pow(x, 2) + Math.pow(y, 2))));
+        return (float) (Math.sqrt((Math.pow(x, 2) + Math.pow(y, 2))));
+    }
+    
+    public String toString(){
+        return ("[" + x + ", " + y + "]");
+            
     }
 
 }

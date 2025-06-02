@@ -576,8 +576,6 @@ private DrawingSurface surface;
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-        int freqInput = Integer.parseInt(jTextField1.getText());
-        surface.getFrequency( freqInput);
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed

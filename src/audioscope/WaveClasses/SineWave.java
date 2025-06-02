@@ -14,27 +14,71 @@ import java.util.ArrayList;
  */
 public class SineWave extends Waveform {
 
-    public ArrayList<Vector2> points = new ArrayList<>();
+    //public ArrayList<Vector2> points = new ArrayList<>();
 
-    public SineWave(Vector2 startPos, int frequency) {
-        super(startPos, frequency);
-
-    }
-
-    public SineWave(Vector2 startPos, int frequency, int amplitude, int speed) {
-        super(startPos, frequency, amplitude, speed);
-    }
-
-    public void drawWave() {
+    public SineWave(Vector2 origin, int frequency) {
+        super(origin, frequency);
 
     }
 
-    /**
+    public SineWave(Vector2 origin, int frequency, int amplitude, int speed, float waveLength) {
+        super(origin, frequency, amplitude, speed, waveLength);
+    }
+
+
+    public void initilizePointList(int resolutionPerCycle, float cycles) {
+        float displayCycles = cycles + 3.0f; // The cycles param accepts the amount of full cycles that fills the screen, but we need to add 1 more so when it updates it doesnt go off screen for a bit, and then + 2 more just in case.
+       
+        float C = origin.getY(); // Vertical shift (baseline of the wave)
+        float K = (float) ( (2 * Math.PI) / waveLength); // Frequency constant for 1 cycle
+        float totalResolution = resolutionPerCycle * displayCycles; // Adjusts for the amount of points to generate by the defined amount of cycles it should coveer
+        float increment = waveLength / resolutionPerCycle; // Horizontal distance between points
+        float D = origin.getX(); // The sine graphs Horizontal offset
+
+        // Add origin to first index
+        points.clear();
+        points.add(origin);
+
+        //add new points to list
+        for (int i = 1; i <= totalResolution; i++) {
+            // Gets the previous point in the list (reminder, this loop starts at 1 instead of zero)
+            Vector2 previousPt = points.get(i - 1);
+           
+            float newX = (previousPt.getX() + increment); // We do this so each point is evenely spaced out from eachother giving us the next x value to input into the sine function bellow
+            float newY = (float) (amplitude * Math.sin(K * (newX - D)) + C); //This is the sine function. This will determine our point along the y - axis
+
+            //Add new point to list
+            points.add(i, new Vector2(newX, newY));
+        }
+        System.out.println("Point list reached initilization for sine wave"); // Debugging statement
+    }
+            //startPos, int frequency, int amplitude, int speed, float waveLength
+    public String toString() {
+        return ("Type: Sine Wave"
+                + "\n[Origin] :" + origin.toString()
+                + "\n[Frequency}: " + frequency
+                + "\n[Amplitude]: " + amplitude
+                + "\n[Speed]: " + speed
+                + "\n[Wave Length]: " + waveLength);
+    }
+
+    public boolean equals(Waveform otherWave) {
+        return false; //Not functional yet
+    }
+
+    public boolean clone(Waveform otherWave) {
+        return false; //Not functional yet
+    }
+}
+
+// --------------- OLD WILL BE DELETED LATER ------------------ //
+
+/*
      * Moves the wave at a designated newOrigin point (moves the entire wave at
      * once), only moves it along the x-axis
      *
      * @param newOrigin - The new origin point as a Vector2
-     */
+     
     public void setOrigin(Vector2 newOrigin) {
         // Get the first point in the list (original origin)
         Vector2 origin = points.get(0);
@@ -62,69 +106,4 @@ public class SineWave extends Waveform {
             }
         }
     }
-
-    public void animate(int waveLength) {
-        // Shifts the origin point, since the draw function is being called each frame, the sinewave will then be recreated with this new origin point which "moves" it! 
-        startPos.addX(speed);
-               
-        if (startPos.getX() >= -waveLength) { // Must be -waveLength to prevent the ends of the wave from showing
-            startPos.setX(-waveLength * 2); // * 2 so its always 1 cycle away from -waveLength
-
-        }
-
-    }
-    
-    public void shiftPoints(int x){
-        
-        for (int i = 0; i < points.size(); i++) {
-            points.get(i).addX(x);
-            
-        }
-    
-    }
-
-    public void initilizePointList(Graphics g2d, int resolutionPerCycle, int waveLength, int cycles) {
-        int C = startPos.getY(); // Vertical shift (baseline of the wave)
-        double K = (2 * Math.PI) / waveLength; // Frequency constant for 1 cycle
-        int totalResolution = resolutionPerCycle * cycles; // Adjusts for the amount of points to generate by the defined amount of cycles it should coveer
-        int increment = waveLength / resolutionPerCycle; // Horizontal distance between points
-        int D = startPos.getX(); // Horizontal offset
-
-        // Add startPos to first index
-        points.clear();
-        points.add(startPos);
-
-        //add new points to list
-        for (int i = 1; i <= totalResolution; i++) {
-
-            Vector2 lastPt = points.get(i - 1);
-
-            int newX = lastPt.getX() + increment;
-            int newY = (int) (amplitude * Math.sin(K * (newX - D)) + C);
-
-            //Add new point to list
-            points.add(i, new Vector2(newX, newY));
-
-            //Draw
-            g2d.drawLine(lastPt.getX(), lastPt.getY(), newX, newY);
-        }
-
-    }
-
-    public String toString() {
-        return "Temp";
-    }
-
-    public boolean equals(Waveform otherWave) {
-        return false; //Not functional yet
-    }
-
-    public boolean clone(Waveform otherWave) {
-        return false; //Not functional yet
-    }
-
-    public int getSpeed() {
-        return this.speed;
-    }
-
-}
+ */
