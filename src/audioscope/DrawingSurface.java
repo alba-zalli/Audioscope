@@ -3,7 +3,6 @@ package audioscope;
 import audioscope.WaveClasses.SawtoothWave;
 import audioscope.WaveClasses.SineWave;
 import audioscope.WaveClasses.TriangleWave;
-import audioscope.WaveClasses.Waveform;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,8 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.SwingUtilities;
-import audioscope.Vector2;
 
 /**
  * Stores animation logic May 29 2025
@@ -24,24 +21,20 @@ public class DrawingSurface extends JPanel {
     private int x = 0; //xcoordinate for animation
     private Timer timer;
 
-    Vector2 origin = new Vector2(0, 100);
-    
+    Vector2 origin = new Vector2(0, 250);
+
     int frequency = 2;
     int amplitude = 60;
     int speed = 100;
-    float waveLength = (speed/frequency); // Measured in pixels, i.e. 500 pixels per cycle
-    
+    float waveLength = (speed / frequency); // Measured in pixels, i.e. 500 pixels per cycle
+
     float cycles;
     int resolutionPerCycle = 30;
-
-    boolean sineWave;
-    SineWave w1;
 
     boolean isSine;
     boolean isTriangle;
     boolean isSawtooth;
     boolean selectedWave;
- 
 
     long lastTime = System.nanoTime();
 
@@ -50,7 +43,31 @@ public class DrawingSurface extends JPanel {
     SawtoothWave sawtooth1;
 
     public void getFrequency(int freq) {
+        System.out.println(freq);
+        this.frequency = freq;
+        this.waveLength = speed / freq;
+        this.cycles = getWidth() / waveLength * 2;
 
+        if (isSine && sine1 != null) {
+            sine1.setFrequency(freq);
+            sine1.setWaveLength(waveLength);
+            sine1.initilizePointList(resolutionPerCycle, cycles);
+        }
+
+        // You can add support for triangle and sawtooth too
+        if (isTriangle && triangle1 != null) {
+            triangle1.setFrequency(freq); // Assuming your TriangleWave has this
+            triangle1.setWaveLength(waveLength);
+            triangle1.initilizePointList(cycles);
+        }
+
+        if (isSawtooth && sawtooth1 != null) {
+            sawtooth1.setFrequency(freq);
+            sawtooth1.setWaveLength(waveLength);
+            sawtooth1.initilizePointList(cycles);
+        }
+
+        repaint();
     }
 
     public void getProjectMode(boolean chordMode) { //true is chord mode, false is manual
@@ -60,26 +77,7 @@ public class DrawingSurface extends JPanel {
     }
 
     public void getWaveType(String waveType) {
-        /*
-        if (waveType.equals("Sine")) { //if the wave is a sine wave
-            sineWave = true;
-            w1 = new SineWave(origin, frequency, amplitude, speed, waveLength);
-            timer.start();
-        } else if (waveType.equals("Triangle")) { //if the wave is a triangle wave
-            sineWave = false;
-            w1 = null;
-        } else if (waveType.equals("Sawtooth")) {
-            sineWave = false;
-            w1 = null;
-        } else if (waveType.equals("Square")) {
-            sineWave = false;
-            w1 = null;
-        } else {
-            sineWave = false;
-            w1 = null;
-            timer.stop();
-         */
-        // The variable bellow gets the amount of cycles to display to cover the length of the screen
+        // The variable below gets the amount of cycles to display to cover the length of the screen
         cycles = getWidth() / waveLength * 2;
         isSine = false;
         isTriangle = false;
@@ -93,7 +91,6 @@ public class DrawingSurface extends JPanel {
                 isSine = true;
                 sine1 = new SineWave(origin, frequency, amplitude, speed, waveLength);
                 sine1.initilizePointList(resolutionPerCycle, cycles);
-
                 System.out.println("Clicked Sine wave"); // Debugging
                 break;
             case "Triangle":
@@ -142,13 +139,13 @@ public class DrawingSurface extends JPanel {
         float deltaTime = (currentTime - lastTime) / 1_000_000_000.0f;
         if (isSine) {
             sine1.animate(deltaTime);
-            
+
             lastTime = currentTime;
 
         } else if (isTriangle) {
             triangle1.animate(deltaTime);
             lastTime = currentTime;
-            
+
         } else if (isSawtooth) {
             sawtooth1.animate(deltaTime);
             lastTime = currentTime;
