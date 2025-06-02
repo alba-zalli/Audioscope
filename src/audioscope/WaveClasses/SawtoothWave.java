@@ -11,7 +11,7 @@ import audioscope.Vector2;
  * @author cunpl
  */
 public class SawtoothWave extends Waveform {
-    public SawtoothWave(Vector2 origin, double frequency) {
+    public SawtoothWave(Vector2 origin, float frequency) {
         super(origin, frequency);
 
     }
@@ -24,8 +24,8 @@ public class SawtoothWave extends Waveform {
      * @param speed
      * @param waveLength
      */
-    public SawtoothWave(Vector2 origin, double frequency, int amplitude, int speed, float waveLength) {
-        super(origin, frequency, amplitude, speed, waveLength);
+    public SawtoothWave(Vector2 origin, float frequency, float amplitude, float speed, float waveLength, float scaleFactor) {
+        super(origin, frequency, amplitude, speed, waveLength, scaleFactor);
     }
 
     public void initilizePointList(float cycles) {
@@ -80,20 +80,7 @@ public class SawtoothWave extends Waveform {
 
     public Waveform clone() {
         //NOT WORKING!!!!!!!!!
-        SineWave copy = new SineWave(
-                new Vector2(this.origin.getX(), this.origin.getY()),
-                this.frequency,
-                this.amplitude,
-                this.speed,
-                this.waveLength
-        );
-
-        // Deep copy of the points list
-        for (Vector2 point : this.points) {
-            copy.points.add(new Vector2(point.getX(), point.getY()));
-        }
-
-        return copy;
+        return null;
     }
 
 }

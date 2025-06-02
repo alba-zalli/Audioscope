@@ -14,14 +14,16 @@ import java.util.ArrayList;
  */
 public abstract class Waveform {
 
-    protected double frequency;
-    protected int amplitude;
-    protected int speed;
+    protected float frequency;
+    protected float amplitude;
+    protected float speed;
     protected ArrayList<Vector2> points = new ArrayList<>();
     protected float waveLength;
     protected Vector2 origin;
+    protected float scaleFactor;
+    protected float adjustedAmp;
 
-    public Waveform(Vector2 origin, double frequency) {
+    public Waveform(Vector2 origin, float frequency) {
         this.frequency = frequency;
         this.origin = origin;
         speed = 10;
@@ -29,34 +31,37 @@ public abstract class Waveform {
 
     }
 
-    public Waveform(Vector2 origin, double frequency, int amplitude, int speed, float waveLength) {
+
+    public Waveform(Vector2 origin, float frequency, float amplitude, float speed, float waveLength, float scaleFactor) {
         this(origin, frequency);
         this.amplitude = amplitude;
         this.speed = speed;
         this.waveLength = waveLength;
+        this.scaleFactor = scaleFactor;
+        adjustedAmp = amplitude/scaleFactor;
     }
 
-    public double getFrequency() {
+    public float getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(double frequency) {
+    public void setFrequency(float frequency) {
         this.frequency = frequency;
     }
 
-    public int getAmplitude() {
+    public float getAmplitude() {
         return amplitude;
     }
 
-    public void setAmplitude(int amplitude) {
+    public void setAmplitude(float amplitude) {
         this.amplitude = amplitude;
     }
 
-    public int getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(float speed) {
         this.speed = speed;
     }
 
@@ -92,25 +97,48 @@ public abstract class Waveform {
 
     }
 
+    public void setWave(float xLoco) {
+        float ogOrigin_X = points.get(0).getX();
+        points.get(0).setX(xLoco);
+
+        for (int i = 1; i < points.size(); i++) {
+
+            Vector2 origin = points.get(0);
+            //System.out.println("IN SET WAVE:"+origin.toString() + "WaveLength: " + waveLength);
+            Vector2 currPoint = points.get(i);
+            float distFromOld_X = currPoint.getX() - ogOrigin_X;
+            currPoint.setX(origin.getX() + distFromOld_X);
+
+            //Vector2 currPoint = points.get(i);
+            //currPoint.setX(-xLoco +(i *incValue));
+        }
+    }
+
     public void translateWave(float amount) {
         for (int i = 0; i < points.size(); i++) {
             points.get(i).addX(amount);
         }
     }
-   
-    /**
-     * Handles animating the wave. It moves the wave by the amount the speed attribute indicates by calling translateWave function.
-     * It also handles updating the wave to avoid the origin point of the wave (the very start) from going off screen and breaking its continuity
-     * This function is called every frame in the DrawingSurface class.
-     */
 
+    /**
+     * Handles animating the wave. It moves the wave by the amount the speed
+     * attribute indicates by calling translateWave function. It also handles
+     * updating the wave to avoid the origin point of the wave (the very start)
+     * from going off screen and breaking its continuity This function is called
+     * every frame in the DrawingSurface class.
+     */
     public void animate(float deltaTime) {
         //float actualSpeed = frequency * waveLength;
         translateWave(speed * deltaTime);
+        System.out.println(origin.toString() + " WaveLength: " + waveLength);
         if (origin.getX() >= 0) { // Must be -waveLength to prevent the ends of the wave from showing
-            translateWave(-waveLength); // Will be moved 1 cycle to the left. (which will be off screen)
+            //System.out.println(origin.toString() +" WaveLength: " + waveLength);
+            //origin.setX();
+            setWave(-waveLength * (float)(1/scaleFactor)); // Will be moved 1 cycle to the left. (which will be off screen)
+
         }
     }
+
     //public abstract void initilizePointList(int resolutionPerCycle, float cycles);
     public abstract boolean equals(Waveform otherWave);
 

@@ -27,8 +27,8 @@ public class TriangleWave extends Waveform {
      * @param speed
      * @param waveLength
      */
-    public TriangleWave(Vector2 origin, int frequency, int amplitude, int speed, float waveLength) {
-        super(origin, frequency, amplitude, speed, waveLength);
+    public TriangleWave(Vector2 origin, int frequency, float amplitude, float speed, float waveLength, float scaleFactor) {
+        super(origin, frequency, amplitude, speed, waveLength, scaleFactor);
     }
 
     public void initilizePointList(float cycles) {
@@ -75,22 +75,11 @@ public class TriangleWave extends Waveform {
         return false; //Not functional yet
     }
 
+    
     public Waveform clone() {
-         //NOT WORKING!!!!!!!!!
-        SineWave copy = new SineWave(
-                new Vector2(this.origin.getX(), this.origin.getY()),
-                this.frequency,
-                this.amplitude,
-                this.speed,
-                this.waveLength
-        );
-
-        // Deep copy of the points list
-        for (Vector2 point : this.points) {
-            copy.points.add(new Vector2(point.getX(), point.getY()));
-        }
-
-        return copy;
+        
+        return null;
+        
     }
 }
 

@@ -14,15 +14,15 @@ public class Diminished extends Chord{
     /**
      * Constants
      */
-    private static double FREQ_RATIO1=1.2; //minor third
-    private static double FREQ_RATIO2=Math.sqrt(2); //diminished  fifth
+    private static float FREQ_RATIO1=(float) 1.2; //minor third
+    private static float FREQ_RATIO2=(float) Math.sqrt(2); //diminished  fifth
 
     
     /**
      * Primary constructor
      * @param baseFreq represents the inputted frequency
      */
-    public Diminished (double baseFreq) {
+    public Diminished (float baseFreq) {
         super(baseFreq, FREQ_RATIO1, FREQ_RATIO2);
     }
     

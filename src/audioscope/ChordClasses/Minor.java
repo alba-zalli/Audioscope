@@ -15,15 +15,15 @@ public class Minor extends Chord{
     /**
      * Constants
      */
-    private static double FREQ_RATIO1=1.2; //minor third
-    private static double FREQ_RATIO2=1.5; //perfect fifth
+    private static float FREQ_RATIO1=(float) 1.2; //minor third
+    private static float FREQ_RATIO2=(float) 1.5; //perfect fifth
 
     
     /**
      * Primary constructor
      * @param baseFreq represents the inputted frequency
      */
-    public Minor(double baseFreq) {
+    public Minor(float baseFreq) {
         super(baseFreq, FREQ_RATIO1, FREQ_RATIO2);
     }
     

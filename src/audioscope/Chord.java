@@ -14,30 +14,30 @@ public abstract class Chord {
     /**
      * Protected instance variables
      */
-    private double baseFreq;
-    private double note1;
-    private double note2;
-    private double note3;
+    private float  baseFreq;
+    private float  note1;
+    private float  note2;
+    private float  note3;
 
     /**
      * Constants for each concrete subclass
      */
-    private static double FREQ_RATIO1;
-    private static double FREQ_RATIO2;
-    private static double FREQ_RATIO3;
+    private static float  FREQ_RATIO1;
+    private static float  FREQ_RATIO2;
+    private static float  FREQ_RATIO3;
 
     /**
      * Private class variables
      */
-    private static double LOW_FREQ = 20; //20 hertz is the lowest frequency heard by humans
-    private static double HIGH_FREQ = 20000; //20,000 hertz is the highest frequency heard by humans
+    private static float  LOW_FREQ = 20; //20 hertz is the lowest frequency heard by humans
+    private static float  HIGH_FREQ = 20000; //20,000 hertz is the highest frequency heard by humans
 
     /**
      * Primary constructor
      *
      * @param baseFreq represents the inputted base note
      */
-    public Chord(double baseFreq) {
+    public Chord(float  baseFreq) {
         this.baseFreq = baseFreq;
     }
 
@@ -50,7 +50,7 @@ public abstract class Chord {
      * @param FREQ_RATIO2 represents the ratio to get a necessary harmonic
      * frequency of this note
      */
-    public Chord(double baseFreq, double FREQ_RATIO1, double FREQ_RATIO2) {
+    public Chord(float  baseFreq, float  FREQ_RATIO1, float  FREQ_RATIO2) {
         this.FREQ_RATIO1 = FREQ_RATIO1;
         this.FREQ_RATIO2 = FREQ_RATIO2;
         this.baseFreq = baseFreq;
@@ -67,7 +67,7 @@ public abstract class Chord {
      * @param FREQ_RATIO3 represents the ratio to get a necessary harmonic
      * frequency of this note
      */
-    public Chord(double baseFreq, double FREQ_RATIO1, double FREQ_RATIO2, double FREQ_RATIO3) {
+    public Chord(float  baseFreq, float  FREQ_RATIO1, float  FREQ_RATIO2, float  FREQ_RATIO3) {
         this.FREQ_RATIO1 = FREQ_RATIO1;
         this.FREQ_RATIO2 = FREQ_RATIO2;
         this.FREQ_RATIO3 = FREQ_RATIO3;
@@ -79,7 +79,7 @@ public abstract class Chord {
      *
      * @return int representing base frequency
      */
-    public double getFreq() {
+    public float  getFreq() {
         return baseFreq;
     }
 
@@ -88,7 +88,7 @@ public abstract class Chord {
      *
      * @return Boolean representing if frequency is successfully set
      */
-    public boolean setFreq(double baseFreq) {
+    public boolean setFreq(float  baseFreq) {
         if (baseFreq >= LOW_FREQ && baseFreq <= HIGH_FREQ) {
             this.baseFreq = baseFreq;
             return true;
@@ -106,15 +106,15 @@ public abstract class Chord {
         this.note3 = baseFreq * FREQ_RATIO3;
     }
     
-    public double getNote1(){
+    public float  getNote1(){
         return note1;
     }
     
-    public double getNote2(){
+    public float  getNote2(){
         return note2;
     }
     
-    public double getNote3(){
+    public float  getNote3(){
         return note3;
     }
 
@@ -123,7 +123,7 @@ public abstract class Chord {
      *
      * @param nowPlaying represents the array of notes currently playing
      */
-    public void addNotes(double[] nowPlaying) {
+    public void addNotes(float [] nowPlaying) {
         nowPlaying[0] = baseFreq;
         nowPlaying[1] = note1;
         nowPlaying[2] = note2;
@@ -136,7 +136,7 @@ public abstract class Chord {
      *
      * @param nowPlaying represents the array of notes currently playing
      */
-    public void clearNotes(double[] nowPlaying) {
+    public void clearNotes(float [] nowPlaying) {
         nowPlaying = null; //clear notes in array
     }
 }

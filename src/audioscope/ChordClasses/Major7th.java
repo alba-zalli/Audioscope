@@ -15,15 +15,15 @@ public class Major7th extends Chord{
     /**
      * Constants
      */
-    private static double FREQ_RATIO1=1.25; //major third
-    private static double FREQ_RATIO2=1.5; //perfect fifth
-    private static double FREQ_RATIO3=15/18.0; //perfect fifth
+    private static float FREQ_RATIO1=(float) 1.25; //major third
+    private static float FREQ_RATIO2=(float) 1.5; //perfect fifth
+    private static float FREQ_RATIO3=(float) (15/18.0); //perfect fifth
     
     /**
      * Primary constructor
      * @param baseFreq represents the inputted frequency
      */
-    public Major7th (double baseFreq) {
+    public Major7th (float baseFreq) {
         super(baseFreq, FREQ_RATIO1, FREQ_RATIO2, FREQ_RATIO3);
     }
     

@@ -30,8 +30,9 @@ public class DrawingSurface extends JPanel {
     Vector2 origin = new Vector2(0, 250);
 
     int frequency = 2;
-    int amplitude = 60;
-    int speed = 100;
+    float scaleFactor = 0.1f;
+    float amplitude = 10;
+    float speed = 100;
     float waveLength = (speed / frequency); // Measured in pixels, i.e. 500 pixels per cycle
 
     float cycles;
@@ -173,21 +174,21 @@ public class DrawingSurface extends JPanel {
             case "Sine":
                 //if the wave is a sine wave
                 isSine = true;
-                sine1 = new SineWave(origin, frequency, amplitude, speed, waveLength);
+                sine1 = new SineWave(origin, frequency, amplitude, speed, waveLength,scaleFactor);
                 sine1.initilizePointList(resolutionPerCycle, cycles);
                 System.out.println("Clicked Sine wave"); // Debugging
                 break;
             case "Triangle":
                 //if the wave is a triangle wave
                 isTriangle = true;
-                triangle1 = new TriangleWave(origin, frequency, amplitude, speed, waveLength);
+                triangle1 = new TriangleWave(origin, frequency, amplitude, speed, waveLength, scaleFactor);
                 triangle1.initilizePointList(cycles);
 
                 System.out.println("Clicked Triangle wave");
                 break;
             case "Sawtooth":
                 isSawtooth = true;
-                sawtooth1 = new SawtoothWave(origin, frequency, amplitude, speed, waveLength);
+                sawtooth1 = new SawtoothWave(origin, frequency, amplitude, speed, waveLength, scaleFactor);
                 sawtooth1.initilizePointList(cycles);
 
                 System.out.println("Clicked Sawtooth wave");
