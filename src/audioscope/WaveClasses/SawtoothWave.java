@@ -52,8 +52,11 @@ public class SawtoothWave extends Waveform {
             
             float newX = (previousPt.getX() + increment); // We do this so each point is evenely spaced out from eachother giving us the next x value to input into the sine function bellow
             float newY = (float) (amplitude * Math.sin(K * (newX - D)) + C); //This is the sine function. This will determine our point along the y - axis
-            if ( (int) Math.sin( K *(newX - D) ) == 1){
-                newX += increment;
+            System.out.println(Math.sin( K *(newX - D) ));
+            int checkAmp = (int) Math.round(Math.sin( K *(newX - D) ));
+            System.out.println("ROUNDED " + checkAmp);
+            if ( (checkAmp) == 1){
+                newX = newX + increment;
             
             }
             //Add new point to list

@@ -14,7 +14,6 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
 import audioscope.Vector2;
 
-
 /**
  * Stores animation logic May 29 2025
  *
@@ -26,13 +25,15 @@ public class DrawingSurface extends JPanel {
     private Timer timer;
 
     Vector2 origin = new Vector2(0, 100);
-    int frequency = 100;
+    
+    int frequency = 2;
     int amplitude = 60;
-    int speed = 4;
-    float waveLength = 500.0f; // Measured in pixels, i.e. 500 pixels per cycle
+    int speed = 100;
+    float waveLength = (speed/frequency); // Measured in pixels, i.e. 500 pixels per cycle
+    
     float cycles;
-    int resolutionPerCycle = 100;
-   
+    int resolutionPerCycle = 30;
+
     boolean sineWave;
     SineWave w1;
 
@@ -40,27 +41,26 @@ public class DrawingSurface extends JPanel {
     boolean isTriangle;
     boolean isSawtooth;
     boolean selectedWave;
-   
-
  
+
+    long lastTime = System.nanoTime();
 
     SineWave sine1;
     TriangleWave triangle1;
     SawtoothWave sawtooth1;
 
-    public void getFrequency(int freq){
-        
+    public void getFrequency(int freq) {
+
     }
-    
+
     public void getProjectMode(boolean chordMode) { //true is chord mode, false is manual
         if (chordMode) {
 
         }
     }
 
-
     public void getWaveType(String waveType) {
-       /*
+        /*
         if (waveType.equals("Sine")) { //if the wave is a sine wave
             sineWave = true;
             w1 = new SineWave(origin, frequency, amplitude, speed, waveLength);
@@ -78,9 +78,9 @@ public class DrawingSurface extends JPanel {
             sineWave = false;
             w1 = null;
             timer.stop();
-*/
-            // The variable bellow gets the amount of cycles to display to cover the length of the screen
-        cycles = getWidth() / waveLength;
+         */
+        // The variable bellow gets the amount of cycles to display to cover the length of the screen
+        cycles = getWidth() / waveLength * 2;
         isSine = false;
         isTriangle = false;
         isSawtooth = false;
@@ -108,7 +108,7 @@ public class DrawingSurface extends JPanel {
                 isSawtooth = true;
                 sawtooth1 = new SawtoothWave(origin, frequency, amplitude, speed, waveLength);
                 sawtooth1.initilizePointList(cycles);
-               
+
                 System.out.println("Clicked Sawtooth wave");
                 break;
             default:
@@ -133,17 +133,25 @@ public class DrawingSurface extends JPanel {
     }
 
     private void updateAnimation() {
-/*
+        /*
         if (sineWave) {
             //w1.translateWave(new Vector2(w1.getSpeed(), 0), getWidth(), 0);
             w1.animate(waveLength);
-*/
+         */
+        long currentTime = System.nanoTime();
+        float deltaTime = (currentTime - lastTime) / 1_000_000_000.0f;
         if (isSine) {
-            sine1.animate();
+            sine1.animate(deltaTime);
+            
+            lastTime = currentTime;
+
         } else if (isTriangle) {
-            triangle1.animate();
-        } else if (isSawtooth){
-            sawtooth1.animate();
+            triangle1.animate(deltaTime);
+            lastTime = currentTime;
+            
+        } else if (isSawtooth) {
+            sawtooth1.animate(deltaTime);
+            lastTime = currentTime;
         }
     }
 
@@ -152,16 +160,16 @@ public class DrawingSurface extends JPanel {
         g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, getWidth(), getHeight());
         g2d.setColor(Color.BLUE);
-/*
+        /*
         if (sineWave) {
             int cycles = (int) Math.ceil((double) getWidth() / waveLength) + 2; // +2 ensures it starts offscreen and scrolls in
             w1.initilizePointList(g, resolutionPerCycle, waveLength);
-*/
+         */
         if (isSine) {
             sine1.drawWave(g2d);
         } else if (isTriangle) {
             triangle1.drawWave(g2d);
-        } else if (isSawtooth){
+        } else if (isSawtooth) {
             sawtooth1.drawWave(g2d);
         }
     }

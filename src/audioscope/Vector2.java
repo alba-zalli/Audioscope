@@ -58,7 +58,7 @@ public class Vector2 {
      *
      * @param num - The new value
      */
-    public void setY(int num) {
+    public void setY(float num) {
         y += num;
     }
 

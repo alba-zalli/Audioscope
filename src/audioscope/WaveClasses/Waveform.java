@@ -104,8 +104,9 @@ public abstract class Waveform {
      * This function is called every frame in the DrawingSurface class.
      */
 
-    public void animate() {
-        translateWave(speed);
+    public void animate(float deltaTime) {
+        //float actualSpeed = frequency * waveLength;
+        translateWave(speed * deltaTime);
         if (origin.getX() >= 0) { // Must be -waveLength to prevent the ends of the wave from showing
             translateWave(-waveLength); // Will be moved 1 cycle to the left. (which will be off screen)
         }
