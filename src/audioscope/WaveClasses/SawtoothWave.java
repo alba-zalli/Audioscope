@@ -11,6 +11,7 @@ import audioscope.Vector2;
  * @author cunpl
  */
 public class SawtoothWave extends Waveform {
+
     public SawtoothWave(Vector2 origin, float frequency) {
         super(origin, frequency);
 
@@ -29,17 +30,16 @@ public class SawtoothWave extends Waveform {
     }
 
     public void initilizePointList(float cycles) {
-        
+
         // Note, a triangle wave is just a sine wave where each point linearly connects to the other point, and those points is the sine waves min, max, and zeros
         int res = 4; // A triangle wave has a fixed resolution, in the code we could be running a sineWave first so this must still accept a resolution param since the wave type can change (prevents remaking lines
         float displayCycles = cycles + 3.0f; // The cycles param accepts the amount of full cycles that fills the screen, but we need to add 1 more so when it updates it doesnt go off screen for a bit, and then + 2 more just in case.
 
         float C = origin.getY(); // Vertical shift (baseline of the wave)
         float totalResolution = 5 * displayCycles; // Adjusts for the amount of points to generate by the defined amount of cycles it should coveer
-        float K = (float) ( (2 * Math.PI) / waveLength); // Frequency constant for 1 cycle
+        float K = (float) ((2 * Math.PI) / waveLength); // Frequency constant for 1 cycle
         float increment = waveLength / res; // Gets how many pixels to move along the x axis (must be 1/4 the wave length).
-        float D = origin.getX(); 
-       
+        float D = origin.getX();
 
         // Add origin to first index
         points.clear();
@@ -47,17 +47,17 @@ public class SawtoothWave extends Waveform {
 
         //add new points to list
         for (int i = 1; i <= totalResolution; i++) {
-                        // Gets the previous point in the list (reminder, this loop starts at 1 instead of zero)
+            // Gets the previous point in the list (reminder, this loop starts at 1 instead of zero)
             Vector2 previousPt = points.get(i - 1);
-            
+
             float newX = (previousPt.getX() + increment); // We do this so each point is evenely spaced out from eachother giving us the next x value to input into the sine function bellow
             float newY = (float) (amplitude * Math.sin(K * (newX - D)) + C); //This is the sine function. This will determine our point along the y - axis
-            System.out.println(Math.sin( K *(newX - D) ));
-            int checkAmp = (int) Math.round(Math.sin( K *(newX - D) ));
+            System.out.println(Math.sin(K * (newX - D)));
+            int checkAmp = (int) Math.round(Math.sin(K * (newX - D)));
             System.out.println("ROUNDED " + checkAmp);
-            if ( (checkAmp) == 1){
+            if ((checkAmp) == 1) {
                 newX = newX + increment;
-            
+
             }
             //Add new point to list
             points.add(i, new Vector2(newX, newY));
@@ -66,7 +66,7 @@ public class SawtoothWave extends Waveform {
     }
 
     public String toString() {
-        return ("Type: Sawtooth Wave" 
+        return ("Type: Sawtooth Wave"
                 + "\n[Origin] :" + origin.toString()
                 + "\n[Frequency}: " + frequency
                 + "\n[Amplitude]: " + amplitude
@@ -81,6 +81,10 @@ public class SawtoothWave extends Waveform {
     public Waveform clone() {
         //NOT WORKING!!!!!!!!!
         return null;
+    }
+
+    public String getInstanceOf() {
+        return "SawtoothWave";
     }
 
 }

@@ -139,11 +139,18 @@ public abstract class Waveform {
         }
     }
 
-    //public abstract void initilizePointList(int resolutionPerCycle, float cycles);
     public abstract boolean equals(Waveform otherWave);
 
     public abstract Waveform clone();
 
     public abstract String toString();
+
+    public Object getInstanceOf() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void initilizePointList(float resolutionPerCycle, float f) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }
