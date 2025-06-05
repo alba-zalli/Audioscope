@@ -27,7 +27,7 @@ public class TriangleWave extends Waveform {
      * @param speed
      * @param waveLength
      */
-    public TriangleWave(Vector2 origin, int frequency, float amplitude, float speed, float waveLength, float scaleFactor) {
+    public TriangleWave(Vector2 origin, float frequency, float amplitude, float speed, float waveLength, float scaleFactor) {
         super(origin, frequency, amplitude, speed, waveLength, scaleFactor);
     }
 
@@ -75,8 +75,8 @@ public class TriangleWave extends Waveform {
     }
 
     public Waveform clone() {
-
-        return null;
+        Vector2 originCopy = new Vector2(this.origin.getX(), this.origin.getY());
+        return new TriangleWave(originCopy, this.frequency, this.amplitude, this.speed, this.waveLength, this.scaleFactor);
 
     }
 

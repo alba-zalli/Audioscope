@@ -5,22 +5,20 @@
 package audioscope.WaveClasses;
 
 import audioscope.Vector2;
-import java.awt.Graphics;
-import java.util.ArrayList;
 
 /**
  *
- * @author AmAbd4146
+ * @author albaz
  */
-public class SineWave extends Waveform {
+public class SquareWave extends Waveform {
 
     //public ArrayList<Vector2> points = new ArrayList<>();
-    public SineWave(Vector2 origin, float frequency) {
+    public SquareWave(Vector2 origin, float frequency) {
         super(origin, frequency);
 
     }
 
-    public SineWave(Vector2 origin, float frequency, float amplitude, float speed, float waveLength, float scaleFactor) {
+    public SquareWave(Vector2 origin, float frequency, float amplitude, float speed, float waveLength, float scaleFactor) {
         super(origin, frequency, amplitude, speed, waveLength, scaleFactor);
     }
 
@@ -42,7 +40,8 @@ public class SineWave extends Waveform {
             Vector2 previousPt = points.get(i - 1);
 
             float newX = (previousPt.getX() + increment); // We do this so each point is evenely spaced out from eachother giving us the next x value to input into the sine function bellow
-            float newY = (float) ((1 / scaleFactor) * amplitude * Math.sin(K * (newX - D)) + C); //This is the sine function. This will determine our point along the y - axis
+            float phase = (newX - D) / waveLength;
+            float newY = (float) (amplitude * Math.signum(K * Math.sin(2 * Math.PI * phase)) + C);
 
             //Add new point to list
             points.add(i, new Vector2(newX, newY));
@@ -52,7 +51,7 @@ public class SineWave extends Waveform {
     //startPos, int frequency, int amplitude, int speed, float waveLength
 
     public String toString() {
-        return ("Type: Sine Wave"
+        return ("Type: Square Wave"
                 + "\n[Origin] :" + origin.toString()
                 + "\n[Frequency}: " + frequency
                 + "\n[Amplitude]: " + amplitude
@@ -65,15 +64,16 @@ public class SineWave extends Waveform {
     }
 
     public Waveform clone() {
+        //DUMMY CODE
         Vector2 originCopy = new Vector2(this.origin.getX(), this.origin.getY());
-        return new SineWave(originCopy, this.frequency, this.amplitude, this.speed, this.waveLength, this.scaleFactor);
+        return new SquareWave(originCopy, this.frequency, this.amplitude, this.speed, this.waveLength, this.scaleFactor);
     }
 
     public String getInstanceOf() {
-        return "SineWave"; 
+        return "SquareWave";
     }
 
     public void setScaleFactor(float scaleFactor) {
-        this.scaleFactor=scaleFactor;
+        this.scaleFactor = scaleFactor;
     }
 }

@@ -8,6 +8,7 @@ import audioscope.ChordClasses.Minor;
 import audioscope.ChordClasses.Sus2nd;
 import audioscope.WaveClasses.SawtoothWave;
 import audioscope.WaveClasses.SineWave;
+import audioscope.WaveClasses.SquareWave;
 import audioscope.WaveClasses.TriangleWave;
 import audioscope.WaveClasses.Waveform;
 import java.awt.Color;
@@ -31,7 +32,7 @@ public class DrawingSurface extends JPanel {
     Vector2 origin = new Vector2(0, 250);
 
     int frequency = 2;
-    float scaleFactor=0.1f;
+    float scaleFactor = 0.1f;
     float amplitude = 10;
     float speed = 100;
     float waveLength = (speed / frequency); // Measured in pixels, i.e. 500 pixels per cycle
@@ -45,6 +46,7 @@ public class DrawingSurface extends JPanel {
     boolean isSine;
     boolean isTriangle;
     boolean isSawtooth;
+    boolean isSquare;
     boolean selectedWave;
 
     //tracks chord type
@@ -55,9 +57,10 @@ public class DrawingSurface extends JPanel {
     SineWave sine1, sine2, sine3, sine4;
     TriangleWave triangle1, triangle2, triangle3, triangle4;
     SawtoothWave sawtooth1, sawtooth2, sawtooth3, sawtooth4;
-    
-    public void getScaleFactor(float scaleFactor){
-        this.scaleFactor=scaleFactor;
+    SquareWave square1, square2, square3, square4;
+
+    public void getScaleFactor(float scaleFactor) {
+        this.scaleFactor = scaleFactor;
         sine1.setScaleFactor(scaleFactor);
         sine2.setScaleFactor(scaleFactor);
         sine3.setScaleFactor(scaleFactor);
@@ -92,19 +95,33 @@ public class DrawingSurface extends JPanel {
         chord.createNotes();
         this.width = getWidth();
 
+        //make this modular 
         if (waveType.equals("Sine")) {
             sine2 = (SineWave) createHarmonicWave(sine1, chord.getNote1());
             sine3 = (SineWave) createHarmonicWave(sine1, chord.getNote2());
             if (chord instanceof Major7th) {
-            sine4 = (SineWave) createHarmonicWave(sine1, chord.getNote3());
-        }
+                sine4 = (SineWave) createHarmonicWave(sine1, chord.getNote3());
+            }
         } else if (waveType.equals("Triangle")) {
             triangle2 = (TriangleWave) createHarmonicWave(triangle1, chord.getNote1());
             triangle3 = (TriangleWave) createHarmonicWave(triangle1, chord.getNote2());
             if (chord instanceof Major7th) {
-            triangle4 = (TriangleWave) createHarmonicWave(triangle1, chord.getNote3());
+                triangle4 = (TriangleWave) createHarmonicWave(triangle1, chord.getNote3());
+            }
+        } else if (waveType.equals("Square")) {
+            square2 = (SquareWave) createHarmonicWave(square1, chord.getNote1());
+            square3 = (SquareWave) createHarmonicWave(square1, chord.getNote2());
+            if (chord instanceof Major7th) {
+                square4 = (SquareWave) createHarmonicWave(square1, chord.getNote3());
+            }
+        } else if(waveType.equals("Sawtooth")){
+            sawtooth2 = (SawtoothWave) createHarmonicWave(sawtooth1, chord.getNote1());
+            sawtooth3 = (SawtoothWave) createHarmonicWave(sawtooth1, chord.getNote2());
+            if (chord instanceof Major7th) {
+                sawtooth4 = (SawtoothWave) createHarmonicWave(sawtooth1, chord.getNote3());
+            }
         }
-        }
+        
         repaint();
     }
 
@@ -125,8 +142,6 @@ public class DrawingSurface extends JPanel {
             sine1.setFrequency(freq);
             sine1.setWaveLength(waveLength);
             sine1.initilizePointList(resolutionPerCycle, cycles);
-            getChordType(chordType);
-
         } else if (isTriangle && triangle1 != null) {
             triangle1.setFrequency(freq);
             triangle1.setWaveLength(waveLength);
@@ -134,10 +149,13 @@ public class DrawingSurface extends JPanel {
         } else if (isSawtooth && sawtooth1 != null) {
             sawtooth1.setFrequency(freq);
             sawtooth1.setWaveLength(waveLength);
-            sawtooth1.initilizePointList(cycles);
-        } else { //its square
-
+            sawtooth1.initilizePointList(resolutionPerCycle, cycles);
+        } else if  (isSquare && square1 != null){
+            square1.setFrequency(freq);
+            square1.setWaveLength(waveLength);
+            square1.initilizePointList(resolutionPerCycle, cycles);
         }
+        getChordType(chordType);
         repaint();
     }
 
@@ -150,7 +168,6 @@ public class DrawingSurface extends JPanel {
         isSawtooth = false;
         selectedWave = true;
         timer.start();
-
         switch (waveType) {
             case "Sine":
                 //if the wave is a sine wave
@@ -164,15 +181,19 @@ public class DrawingSurface extends JPanel {
                 isTriangle = true;
                 triangle1 = new TriangleWave(origin, frequency, amplitude, speed, waveLength, scaleFactor);
                 triangle1.initilizePointList(resolutionPerCycle, cycles);
-
                 System.out.println("Clicked Triangle wave");
                 break;
             case "Sawtooth":
                 isSawtooth = true;
                 sawtooth1 = new SawtoothWave(origin, frequency, amplitude, speed, waveLength, scaleFactor);
-                sawtooth1.initilizePointList(cycles);
-
+                sawtooth1.initilizePointList(resolutionPerCycle, cycles);
                 System.out.println("Clicked Sawtooth wave");
+                break;
+            case "Square":
+                isSquare = true;
+                square1 = new SquareWave(origin, frequency, amplitude, speed, waveLength, scaleFactor);
+                square1.initilizePointList(resolutionPerCycle, cycles);
+                System.out.println("Clicked Square wave");
                 break;
             default:
                 selectedWave = false;
@@ -230,8 +251,33 @@ public class DrawingSurface extends JPanel {
             }
             lastTime = currentTime;
 
-        } else if (isSawtooth) {
-            sawtooth1.animate(deltaTime);
+        } else if (isSawtooth) { //can simplify
+            if (sawtooth1 != null) {
+                sawtooth1.animate(deltaTime);
+            }
+            if (sawtooth2 != null) {
+                sawtooth2.animate(deltaTime);
+            }
+            if (sawtooth3 != null) {
+                sawtooth3.animate(deltaTime);
+            }
+            if (sawtooth4 != null) {
+                sawtooth4.animate(deltaTime);
+            }
+            lastTime = currentTime;
+        } else if (isSquare){
+            if (square1 != null) {
+                square1.animate(deltaTime);
+            }
+            if (square2 != null) {
+                square2.animate(deltaTime);
+            }
+            if (square3 != null) {
+                square3.animate(deltaTime);
+            }
+            if (square4 != null) {
+                square4.animate(deltaTime);
+            }
             lastTime = currentTime;
         }
     }
@@ -277,9 +323,40 @@ public class DrawingSurface extends JPanel {
                 triangle4.drawWave(g2d);
             }
         } else if (isSawtooth) {
-            sawtooth1.drawWave(g2d);
-        }
-    }
+            if (sawtooth1 != null) {
+                g2d.setColor(Color.BLUE);
+                sawtooth1.drawWave(g2d);
+            }
+            if (sawtooth2 != null) {
+                g2d.setColor(Color.RED);
+                sawtooth2.drawWave(g2d);
+            }
+            if (sawtooth3 != null) {
+                g2d.setColor(Color.GREEN);
+                sawtooth3.drawWave(g2d);
+            }
+            if (sawtooth3 != null) {
+                g2d.setColor(Color.PINK);
+                sawtooth4.drawWave(g2d);
+            }
+        } else if (isSquare) {
+            if (square1 != null) {
+                g2d.setColor(Color.BLUE);
+                square1.drawWave(g2d);
+            }
+            if (square2 != null) {
+                g2d.setColor(Color.RED);
+                square2.drawWave(g2d);
+            }
+            if (square3 != null) {
+                g2d.setColor(Color.GREEN);
+                square3.drawWave(g2d);
+            }
+            if (square4 != null) {
+                g2d.setColor(Color.PINK);
+                square4.drawWave(g2d);
+            }
+    }}
 
     @Override
     protected void paintComponent(Graphics g) {
