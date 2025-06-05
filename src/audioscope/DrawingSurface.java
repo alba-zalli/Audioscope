@@ -31,7 +31,7 @@ public class DrawingSurface extends JPanel {
     Vector2 origin = new Vector2(0, 250);
 
     int frequency = 2;
-    float scaleFactor = 0.1f;
+    float scaleFactor=0.1f;
     float amplitude = 10;
     float speed = 100;
     float waveLength = (speed / frequency); // Measured in pixels, i.e. 500 pixels per cycle
@@ -55,6 +55,14 @@ public class DrawingSurface extends JPanel {
     SineWave sine1, sine2, sine3, sine4;
     TriangleWave triangle1, triangle2, triangle3, triangle4;
     SawtoothWave sawtooth1, sawtooth2, sawtooth3, sawtooth4;
+    
+    public void getScaleFactor(float scaleFactor){
+        this.scaleFactor=scaleFactor;
+        sine1.setScaleFactor(scaleFactor);
+        sine2.setScaleFactor(scaleFactor);
+        sine3.setScaleFactor(scaleFactor);
+        sine4.setScaleFactor(scaleFactor);
+    }
 
     public void getChordType(String chordType) {
         this.chordType = chordType;
@@ -122,7 +130,7 @@ public class DrawingSurface extends JPanel {
         } else if (isTriangle && triangle1 != null) {
             triangle1.setFrequency(freq);
             triangle1.setWaveLength(waveLength);
-            triangle1.initilizePointList(cycles);
+            triangle1.initilizePointList(resolutionPerCycle, cycles);
         } else if (isSawtooth && sawtooth1 != null) {
             sawtooth1.setFrequency(freq);
             sawtooth1.setWaveLength(waveLength);
@@ -155,7 +163,7 @@ public class DrawingSurface extends JPanel {
                 //if the wave is a triangle wave
                 isTriangle = true;
                 triangle1 = new TriangleWave(origin, frequency, amplitude, speed, waveLength, scaleFactor);
-                triangle1.initilizePointList(cycles);
+                triangle1.initilizePointList(resolutionPerCycle, cycles);
 
                 System.out.println("Clicked Triangle wave");
                 break;
@@ -188,11 +196,6 @@ public class DrawingSurface extends JPanel {
     }
 
     private void updateAnimation() {
-        /*
-        if (sineWave) {
-            //w1.translateWave(new Vector2(w1.getSpeed(), 0), getWidth(), 0);
-            w1.animate(waveLength);
-         */
         long currentTime = System.nanoTime();
         float deltaTime = (currentTime - lastTime) / 1_000_000_000.0f;
 
@@ -238,11 +241,6 @@ public class DrawingSurface extends JPanel {
         g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, getWidth(), getHeight());
         g2d.setColor(Color.BLUE);
-        /*
-        if (sineWave) {
-            int cycles = (int) Math.ceil((double) getWidth() / waveLength) + 2; // +2 ensures it starts offscreen and scrolls in
-            w1.initilizePointList(g, resolutionPerCycle, waveLength);
-         */
         if (isSine) {
             if (sine1 != null) {
                 g2d.setColor(Color.BLUE);
@@ -262,7 +260,22 @@ public class DrawingSurface extends JPanel {
             }
 
         } else if (isTriangle) {
-            triangle1.drawWave(g2d);
+            if (triangle1 != null) {
+                g2d.setColor(Color.BLUE);
+                triangle1.drawWave(g2d);
+            }
+            if (triangle2 != null) {
+                g2d.setColor(Color.RED);
+                triangle2.drawWave(g2d);
+            }
+            if (triangle3 != null) {
+                g2d.setColor(Color.GREEN);
+                triangle3.drawWave(g2d);
+            }
+            if (triangle4 != null) {
+                g2d.setColor(Color.PINK);
+                triangle4.drawWave(g2d);
+            }
         } else if (isSawtooth) {
             sawtooth1.drawWave(g2d);
         }

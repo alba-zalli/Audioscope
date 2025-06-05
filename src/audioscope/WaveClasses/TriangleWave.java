@@ -31,7 +31,7 @@ public class TriangleWave extends Waveform {
         super(origin, frequency, amplitude, speed, waveLength, scaleFactor);
     }
 
-    public void initilizePointList(float cycles) {
+    public void initilizePointList(float resolutionPerCycle, float cycles) {
 
         // Note, a triangle wave is just a sine wave where each point linearly connects to the other point, and those points is the sine waves min, max, and zeros
         int res = 4; // A triangle wave has a fixed resolution, in the code we could be running a sineWave first so this must still accept a resolution param since the wave type can change (prevents remaking lines

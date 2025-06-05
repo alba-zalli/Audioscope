@@ -286,6 +286,12 @@ private DrawingSurface surface;
 
         jLabel5.setText("Speed");
 
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -592,6 +598,12 @@ private DrawingSurface surface;
         // TODO add your handling code here:
         surface.getChordType("Major");
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        // TODO add your handling code here:
+        float value = (float) jSlider1.getValue();
+        surface.getScaleFactor(value);
+    }//GEN-LAST:event_jSlider1StateChanged
 
 
     /**

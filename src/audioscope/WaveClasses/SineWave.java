@@ -73,4 +73,8 @@ public class SineWave extends Waveform {
     public String getInstanceOf() {
         return "SineWave"; 
     }
+
+    public void setScaleFactor(float scaleFactor) {
+        this.scaleFactor=scaleFactor;
+    }
 }
