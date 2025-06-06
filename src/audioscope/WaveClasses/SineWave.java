@@ -25,10 +25,10 @@ public class SineWave extends Waveform {
     }
 
     public void initilizePointList(float resolutionPerCycle, float cycles) {
-        float displayCycles = cycles + 3.0f; // The cycles param accepts the amount of full cycles that fills the screen, but we need to add 1 more so when it updates it doesnt go off screen for a bit, and then + 2 more just in case.
+        float displayCycles = cycles + 5.0f; // The cycles param accepts the amount of full cycles that fills the screen, but we need to add 1 more so when it updates it doesnt go off screen for a bit, and then + 2 more just in case.
         float C = origin.getY(); // Vertical shift (baseline of the wave)
-        float K = (float) ((2 * Math.PI) / waveLength) * scaleFactor; // Frequency constant for 1 cycle
-        float totalResolution = resolutionPerCycle * displayCycles; // Adjusts for the amount of points to generate by the defined amount of cycles it should coveer
+        float K = (float) ((2 * Math.PI) / waveLength); // Frequency constant for 1 cycle
+        int totalResolution = Math.round(resolutionPerCycle * displayCycles); // Adjusts for the amount of points to generate by the defined amount of cycles it should coveer
         float increment = waveLength / resolutionPerCycle; // Horizontal distance between points
         float D = origin.getX(); // The sine graphs Horizontal offset
 
@@ -42,10 +42,10 @@ public class SineWave extends Waveform {
             Vector2 previousPt = points.get(i - 1);
 
             float newX = (previousPt.getX() + increment); // We do this so each point is evenely spaced out from eachother giving us the next x value to input into the sine function bellow
-            float newY = (float) ((1 / scaleFactor) * amplitude * Math.sin(K * (newX - D)) + C); //This is the sine function. This will determine our point along the y - axis
+            float newY = (float) (amplitude * Math.sin(K * (newX - D)) + C); //This is the sine function. This will determine our point along the y - axis
 
             //Add new point to list
-            points.add(i, new Vector2(newX, newY));
+            points.add(new Vector2(newX, newY));
         }
         System.out.println("Point list reached initilization for sine wave"); // Debugging statement
     }
@@ -71,9 +71,5 @@ public class SineWave extends Waveform {
 
     public String getInstanceOf() {
         return "SineWave"; 
-    }
-
-    public void setScaleFactor(float scaleFactor) {
-        this.scaleFactor=scaleFactor;
     }
 }

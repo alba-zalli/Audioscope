@@ -14,6 +14,7 @@ import audioscope.WaveClasses.Waveform;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -33,13 +34,13 @@ public class DrawingSurface extends JPanel {
 
     int frequency = 2;
     float scaleFactor = 0.1f;
-    float amplitude = 10;
-    float speed = 100;
+    float amplitude = 90;
+    float speed = 350;
     float waveLength = (speed / frequency); // Measured in pixels, i.e. 500 pixels per cycle
     float width = getWidth();
 
     float cycles;
-    float resolutionPerCycle = 30;
+    float resolutionPerCycle = 200;
 
     //tracks wave type
     String waveType;
@@ -62,9 +63,16 @@ public class DrawingSurface extends JPanel {
     public void getScaleFactor(float scaleFactor) {
         this.scaleFactor = scaleFactor;
         sine1.setScaleFactor(scaleFactor);
-        sine2.setScaleFactor(scaleFactor);
-        sine3.setScaleFactor(scaleFactor);
-        sine4.setScaleFactor(scaleFactor);
+        if (sine2 != null) {
+            sine2.setScaleFactor(scaleFactor);
+        } if (sine3 != null) {
+            sine3.setScaleFactor(scaleFactor);
+
+        }  if (sine4 != null) {
+            sine4.setScaleFactor(scaleFactor);
+        }
+        System.out.println("Scale factor: " + scaleFactor);
+        repaint();
     }
 
     public void getChordType(String chordType) {
@@ -114,14 +122,14 @@ public class DrawingSurface extends JPanel {
             if (chord instanceof Major7th) {
                 square4 = (SquareWave) createHarmonicWave(square1, chord.getNote3());
             }
-        } else if(waveType.equals("Sawtooth")){
+        } else if (waveType.equals("Sawtooth")) {
             sawtooth2 = (SawtoothWave) createHarmonicWave(sawtooth1, chord.getNote1());
             sawtooth3 = (SawtoothWave) createHarmonicWave(sawtooth1, chord.getNote2());
             if (chord instanceof Major7th) {
                 sawtooth4 = (SawtoothWave) createHarmonicWave(sawtooth1, chord.getNote3());
             }
         }
-        
+
         repaint();
     }
 
@@ -150,7 +158,7 @@ public class DrawingSurface extends JPanel {
             sawtooth1.setFrequency(freq);
             sawtooth1.setWaveLength(waveLength);
             sawtooth1.initilizePointList(resolutionPerCycle, cycles);
-        } else if  (isSquare && square1 != null){
+        } else if (isSquare && square1 != null) {
             square1.setFrequency(freq);
             square1.setWaveLength(waveLength);
             square1.initilizePointList(resolutionPerCycle, cycles);
@@ -265,7 +273,7 @@ public class DrawingSurface extends JPanel {
                 sawtooth4.animate(deltaTime);
             }
             lastTime = currentTime;
-        } else if (isSquare){
+        } else if (isSquare) {
             if (square1 != null) {
                 square1.animate(deltaTime);
             }
@@ -284,6 +292,8 @@ public class DrawingSurface extends JPanel {
 
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
         g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, getWidth(), getHeight());
         g2d.setColor(Color.BLUE);
@@ -335,7 +345,7 @@ public class DrawingSurface extends JPanel {
                 g2d.setColor(Color.GREEN);
                 sawtooth3.drawWave(g2d);
             }
-            if (sawtooth3 != null) {
+            if (sawtooth4 != null) {
                 g2d.setColor(Color.PINK);
                 sawtooth4.drawWave(g2d);
             }
@@ -356,7 +366,8 @@ public class DrawingSurface extends JPanel {
                 g2d.setColor(Color.PINK);
                 square4.drawWave(g2d);
             }
-    }}
+        }
+    }
 
     @Override
     protected void paintComponent(Graphics g) {

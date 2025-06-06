@@ -31,14 +31,13 @@ public abstract class Waveform {
 
     }
 
-
     public Waveform(Vector2 origin, float frequency, float amplitude, float speed, float waveLength, float scaleFactor) {
         this(origin, frequency);
         this.amplitude = amplitude;
         this.speed = speed;
         this.waveLength = waveLength;
         this.scaleFactor = scaleFactor;
-        adjustedAmp = amplitude/scaleFactor;
+        adjustedAmp = amplitude / scaleFactor;
     }
 
     public float getFrequency() {
@@ -55,6 +54,14 @@ public abstract class Waveform {
 
     public void setAmplitude(float amplitude) {
         this.amplitude = amplitude;
+    }
+
+    public void setScaleFactor(float scaleFactor) {
+        this.scaleFactor = scaleFactor;
+    }
+
+    public float getScaleFactor() {
+        return scaleFactor;
     }
 
     public float getSpeed() {
@@ -104,13 +111,9 @@ public abstract class Waveform {
         for (int i = 1; i < points.size(); i++) {
 
             Vector2 origin = points.get(0);
-            //System.out.println("IN SET WAVE:"+origin.toString() + "WaveLength: " + waveLength);
             Vector2 currPoint = points.get(i);
             float distFromOld_X = currPoint.getX() - ogOrigin_X;
             currPoint.setX(origin.getX() + distFromOld_X);
-
-            //Vector2 currPoint = points.get(i);
-            //currPoint.setX(-xLoco +(i *incValue));
         }
     }
 
@@ -128,13 +131,13 @@ public abstract class Waveform {
      * every frame in the DrawingSurface class.
      */
     public void animate(float deltaTime) {
-        //float actualSpeed = frequency * waveLength;
-        translateWave(speed * deltaTime);
-        System.out.println(origin.toString() + " WaveLength: " + waveLength);
-        if (origin.getX() >= 0) { // Must be -waveLength to prevent the ends of the wave from showing
-            //System.out.println(origin.toString() +" WaveLength: " + waveLength);
-            //origin.setX();
-            setWave(-waveLength * (float)(1/scaleFactor)); // Will be moved 1 cycle to the left. (which will be off screen)
+        float adjustedScale = scaleFactor / 100f;
+        float adjDelta = deltaTime * adjustedScale;
+
+        translateWave(speed * adjDelta);
+
+         if (origin.getX() >= 0) { // Must be -waveLength to prevent the ends of the wave from showing
+            setWave(-waveLength); // Will be moved 1 cycle to the left. (which will be off screen)
 
         }
     }

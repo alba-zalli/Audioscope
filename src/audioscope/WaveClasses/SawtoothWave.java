@@ -30,7 +30,7 @@ public class SawtoothWave extends Waveform {
     }
 
     public void initilizePointList(float resolutionPerCycle, float cycles) {
-        float displayCycles = cycles + 3.0f;
+        float displayCycles = cycles + 5.0f;
         float C = origin.getY(); // vertical shift
         float totalResolution = resolutionPerCycle * displayCycles;
         float increment = waveLength / resolutionPerCycle;
