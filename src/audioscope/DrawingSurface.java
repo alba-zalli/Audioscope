@@ -32,7 +32,7 @@ public class DrawingSurface extends JPanel {
 
     Vector2 origin = new Vector2(0, 250);
 
-    int frequency = 2;
+    float frequency = 2;
     float scaleFactor = 0.1f;
     float amplitude = 90;
     float speed = 350;
@@ -150,6 +150,33 @@ public class DrawingSurface extends JPanel {
         harmonic.setWaveLength(speed / freq);
         harmonic.initilizePointList(resolutionPerCycle, width / baseWave.getWaveLength() * 2);
         return harmonic;
+    }
+
+    public float getFreq() {
+        return frequency;
+    }
+
+    public float getAmplitude() {
+        return amplitude;
+    }
+
+    public String getWaveType() {
+        return waveType;
+    }
+
+    public void setFreq(float frequency) {
+        this.frequency = frequency;
+        repaint();
+    }
+
+    public void setAmplitude(float amplitude) {
+        this.amplitude = amplitude;
+        repaint();
+    }
+
+    public void setWaveType(String waveType) {
+        this.waveType = waveType;
+        repaint();
     }
 
     public void getFrequency(int freq) {
