@@ -520,11 +520,11 @@ private DrawingSurface surface;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
-        // TODO add your handling code here:
+        surface.pause();
     }//GEN-LAST:event_jToggleButton8ActionPerformed
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
-        // TODO add your handling code here:
+        surface.play();
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
     private void chordToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chordToggleButtonActionPerformed

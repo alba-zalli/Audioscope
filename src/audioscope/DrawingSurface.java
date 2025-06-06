@@ -49,6 +49,7 @@ public class DrawingSurface extends JPanel {
     boolean isSawtooth;
     boolean isSquare;
     boolean selectedWave;
+    boolean isPlaying;
 
     //tracks chord type
     String chordType;
@@ -60,15 +61,25 @@ public class DrawingSurface extends JPanel {
     SawtoothWave sawtooth1, sawtooth2, sawtooth3, sawtooth4;
     SquareWave square1, square2, square3, square4;
 
+    public void play() {
+        isPlaying = true;
+    }
+
+    public void pause() {
+        isPlaying = false;
+    }
+
     public void getScaleFactor(float scaleFactor) {
         this.scaleFactor = scaleFactor;
         sine1.setScaleFactor(scaleFactor);
         if (sine2 != null) {
             sine2.setScaleFactor(scaleFactor);
-        } if (sine3 != null) {
+        }
+        if (sine3 != null) {
             sine3.setScaleFactor(scaleFactor);
 
-        }  if (sine4 != null) {
+        }
+        if (sine4 != null) {
             sine4.setScaleFactor(scaleFactor);
         }
         System.out.println("Scale factor: " + scaleFactor);
@@ -175,6 +186,7 @@ public class DrawingSurface extends JPanel {
         isTriangle = false;
         isSawtooth = false;
         selectedWave = true;
+        isPlaying = true;
         timer.start();
         switch (waveType) {
             case "Sine":
@@ -227,66 +239,64 @@ public class DrawingSurface extends JPanel {
     private void updateAnimation() {
         long currentTime = System.nanoTime();
         float deltaTime = (currentTime - lastTime) / 1_000_000_000.0f;
+        lastTime = currentTime;
 
-        if (isSine) {
-            if (sine1 != null) {
-                sine1.animate(deltaTime);
-            }
-            if (sine2 != null) {
-                sine2.animate(deltaTime);
-            }
-            if (sine3 != null) {
-                sine3.animate(deltaTime);
-            }
-            if (sine4 != null) {
-                sine4.animate(deltaTime);
-            }
+        if (isPlaying) {
+            if (isSine) {
+                if (sine1 != null) {
+                    sine1.animate(deltaTime);
+                }
+                if (sine2 != null) {
+                    sine2.animate(deltaTime);
+                }
+                if (sine3 != null) {
+                    sine3.animate(deltaTime);
+                }
+                if (sine4 != null) {
+                    sine4.animate(deltaTime);
+                }
 
-            lastTime = currentTime;
+            } else if (isTriangle) {
+                if (triangle1 != null) {
+                    triangle1.animate(deltaTime);
+                }
+                if (triangle2 != null) {
+                    triangle2.animate(deltaTime);
+                }
+                if (triangle3 != null) {
+                    triangle3.animate(deltaTime);
+                }
+                if (triangle4 != null) {
+                    triangle4.animate(deltaTime);
+                }
 
-        } else if (isTriangle) {
-            if (triangle1 != null) {
-                triangle1.animate(deltaTime);
+            } else if (isSawtooth) { //can simplify
+                if (sawtooth1 != null) {
+                    sawtooth1.animate(deltaTime);
+                }
+                if (sawtooth2 != null) {
+                    sawtooth2.animate(deltaTime);
+                }
+                if (sawtooth3 != null) {
+                    sawtooth3.animate(deltaTime);
+                }
+                if (sawtooth4 != null) {
+                    sawtooth4.animate(deltaTime);
+                }
+            } else if (isSquare) {
+                if (square1 != null) {
+                    square1.animate(deltaTime);
+                }
+                if (square2 != null) {
+                    square2.animate(deltaTime);
+                }
+                if (square3 != null) {
+                    square3.animate(deltaTime);
+                }
+                if (square4 != null) {
+                    square4.animate(deltaTime);
+                }
             }
-            if (triangle2 != null) {
-                triangle2.animate(deltaTime);
-            }
-            if (triangle3 != null) {
-                triangle3.animate(deltaTime);
-            }
-            if (triangle4 != null) {
-                triangle4.animate(deltaTime);
-            }
-            lastTime = currentTime;
-
-        } else if (isSawtooth) { //can simplify
-            if (sawtooth1 != null) {
-                sawtooth1.animate(deltaTime);
-            }
-            if (sawtooth2 != null) {
-                sawtooth2.animate(deltaTime);
-            }
-            if (sawtooth3 != null) {
-                sawtooth3.animate(deltaTime);
-            }
-            if (sawtooth4 != null) {
-                sawtooth4.animate(deltaTime);
-            }
-            lastTime = currentTime;
-        } else if (isSquare) {
-            if (square1 != null) {
-                square1.animate(deltaTime);
-            }
-            if (square2 != null) {
-                square2.animate(deltaTime);
-            }
-            if (square3 != null) {
-                square3.animate(deltaTime);
-            }
-            if (square4 != null) {
-                square4.animate(deltaTime);
-            }
-            lastTime = currentTime;
         }
     }
 
