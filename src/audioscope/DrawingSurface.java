@@ -35,7 +35,7 @@ public class DrawingSurface extends JPanel {
     float frequency = 2;
     float scaleFactor = 0.1f;
     float amplitude = 90;
-    float speed = 350;
+    float speed = 10000;
     float waveLength = (speed / frequency); // Measured in pixels, i.e. 500 pixels per cycle
     float width = getWidth();
 
@@ -69,7 +69,7 @@ public class DrawingSurface extends JPanel {
         isPlaying = false;
     }
 
-    public void getScaleFactor(float scaleFactor) {
+    public void setScaleFactor(float scaleFactor) {
         this.scaleFactor = scaleFactor;
         sine1.setScaleFactor(scaleFactor);
         if (sine2 != null) {
@@ -84,6 +84,10 @@ public class DrawingSurface extends JPanel {
         }
         System.out.println("Scale factor: " + scaleFactor);
         repaint();
+    }
+    
+    public float getScaleFactor(){
+        return this.scaleFactor;
     }
 
     public void getChordType(String chordType) {
@@ -202,7 +206,6 @@ public class DrawingSurface extends JPanel {
             square1.initilizePointList(resolutionPerCycle, cycles);
         }
         getChordType(chordType);
-        repaint();
     }
 
     public void getWaveType(String waveType) {
