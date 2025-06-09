@@ -4,6 +4,7 @@
  */
 package audioscope;
 
+import audioscope.ChordClasses.Major7th;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
