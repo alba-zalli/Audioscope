@@ -11,7 +11,7 @@ import javax.sound.sampled.*;
  * @author cunpl
  */
 public class AudioThreading extends Thread {
-
+    public int inty= 2;
     private volatile float frequency = 0f; // Can be changed safely from outside
     private volatile float volume = 0.1f;
 
