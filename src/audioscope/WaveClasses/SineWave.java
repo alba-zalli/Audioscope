@@ -84,17 +84,6 @@ public class SineWave extends Waveform {
             points.add(new Vector2(newX, newY));
         }
         System.out.println("Point list reached initilization for sine wave"); // Debugging statement
-        /*playWave(5000, frequency, 0.5f);
-        if (playing == false) {
-            System.out.println(playing);
-            playSound(0.5f);
-        }
-         
-        playAudios();
-        setSpeed();
-        */
-        
-        
     }
 
     /**
@@ -139,99 +128,4 @@ public class SineWave extends Waveform {
     public String getInstanceOf() {
         return "SineWave";
     }
-
-    /*
-    public synchronized void startPlaying(float volume) {
-        if (playing) {
-            return; // Already playing, ignore
-        }
-        playing = true;
-        playThread = new Thread(() -> {
-            playWave(100, volume);
-        });
-        playThread.start();
-    }
-   
-    public synchronized void stopPlaying() {
-        playing = false;
-        if (playThread != null) {
-            try {
-                playThread.join(); // Wait for thread to finish cleanly
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-/*
-    public void playSound(float volume) {
-        playing = true;
-
-        new Thread(() -> {
-            final int SAMPLE_RATE = 44100;
-            final int durationMs = 100; // short buffer to keep it responsive
-            final int numSamples = (int) ((durationMs / 1000.0) * SAMPLE_RATE);
-            final byte[] buffer = new byte[2 * numSamples];
-
-            AudioFormat format = new AudioFormat(SAMPLE_RATE, 16, 1, true, false);
-
-            try (SourceDataLine line = AudioSystem.getSourceDataLine(format)) {
-                line.open(format, buffer.length);
-                line.start();
-
-                while (playing) {
-                    double twoPiF = 2.0 * Math.PI * currentFrequency;
-
-                    for (int i = 0; i < numSamples; i++) {
-                        double time = i / (double) SAMPLE_RATE;
-                        double angle = twoPiF * time;
-                        short sample = (short) (Math.sin(angle) * volume * Short.MAX_VALUE);
-
-                        buffer[2 * i] = (byte) (sample & 0xFF);
-                        buffer[2 * i + 1] = (byte) ((sample >> 8) & 0xFF);
-                    }
-
-                    line.write(buffer, 0, buffer.length);
-                }
-
-                line.drain();
-                line.stop();
-                line.close();
-
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
-    /*
-    public void playWave(int durationMs, float volume) {
-
-        final int SAMPLE_RATE = 44100;
-        final int numSamples = (int) ((durationMs / 1000.0) * SAMPLE_RATE);
-        final byte[] buffer = new byte[2 * numSamples]; // To get 16 bit = 2 bytes per sample
-
-        double twoPiF = 2.0 * Math.PI * frequency;
-
-        for (int i = 0; i < numSamples; i++) {
-            double time = i / (double) SAMPLE_RATE;
-            double angle = twoPiF * time;
-            short sample = (short) (Math.sin(angle) * volume * Short.MAX_VALUE);
-
-            buffer[2 * i] = (byte) (sample & 0xFF);
-            buffer[2 * i + 1] = (byte) ((sample >> 8) & 0xFF);
-
-            //buffer[i] = (byte) (value * 127); // Convert to byte range (-128 to 127)
-        }
-
-        AudioFormat format = new AudioFormat(SAMPLE_RATE, 16, 1, true, false);
-
-        try (SourceDataLine line = AudioSystem.getSourceDataLine(format)) {
-            line.open(format, buffer.length);
-            line.start();
-            line.write(buffer, 0, buffer.length);
-            line.drain();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
-     */
 }

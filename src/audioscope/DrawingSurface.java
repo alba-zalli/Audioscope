@@ -40,7 +40,7 @@ public class DrawingSurface extends JPanel {
     private float frequency = 2;
     private float scaleFactor = 0.1f;
     private float amplitude = 90;
-    private float speed = 10000;
+    final float speed = 10000;
     private float waveLength = (speed / frequency); // Measured in pixels, i.e. 500 pixels per cycle
     private float width = getWidth();
 
@@ -49,11 +49,10 @@ public class DrawingSurface extends JPanel {
 
     //tracks wave type
     private String waveType;
-    private boolean isSine;
-    private boolean isTriangle;
-    boolean isSawtooth;
-    private boolean isSquare;
-    private boolean selectedWave;
+    private static boolean isSine;
+    private static boolean isTriangle;
+    private static boolean isSawtooth;
+    private static boolean isSquare;
     private boolean isPlaying;
 
     //tracks chord type
@@ -69,19 +68,7 @@ public class DrawingSurface extends JPanel {
     private SawtoothWave sawtooth1, sawtooth2, sawtooth3, sawtooth4;
     private SquareWave square1, square2, square3, square4;
 
-    //hold waves in an array
-    private SineWave[] sineWaves = new SineWave[3];
-    private TriangleWave[] triangleWaves = new TriangleWave[3];
-    private SawtoothWave[] sawtoothWaves = new SawtoothWave[3];
-    private SquareWave[] squareWaves = new SquareWave[3];
     
-    private static final AudioThreading baseWaveSound = new AudioThreading();
-    
-    private static final AudioThreading note1Sound = new AudioThreading();
-    private static final AudioThreading note2Sound = new AudioThreading();
-    private static final AudioThreading note3Sound = new AudioThreading();
-    
-
     /**
      * GETTERS AND SETTERS
      */
@@ -120,6 +107,7 @@ public class DrawingSurface extends JPanel {
             setFreqHelper(sawtooth1, freq);
         } else if (isSquare && square1 != null) { //initialize square wave if user has selected this option
             setFreqHelper(square1, freq);
+            setWaveType("Square");
         }
         //setChordType(chordType); //set chord type
     }
@@ -131,7 +119,6 @@ public class DrawingSurface extends JPanel {
      * @param freq base frequency
      */
     public void setFreqHelper(Waveform wave1, float freq) {
-        
         wave1.setFrequency(freq); //set the wave's frequency
         wave1.setWaveLength(waveLength); //set the wave's wavelength
         wave1.initilizePointList(resolutionPerCycle, cycles); //set the wave's point list
@@ -163,7 +150,6 @@ public class DrawingSurface extends JPanel {
         isSine = false;
         isTriangle = false;
         isSawtooth = false;
-        selectedWave = true;
         isPlaying = true;
         timer.start();
         switch (waveType) {
@@ -200,7 +186,6 @@ public class DrawingSurface extends JPanel {
                 System.out.println("Clicked Square wave");
                 break;
             default:
-                selectedWave = false;
                 timer.stop();
                 System.out.println("ERROR! User (somehow) selected a wave type that is not a valid option!");
                 break;
@@ -211,13 +196,7 @@ public class DrawingSurface extends JPanel {
     public String getWaveType() {
         return waveType;
     }
-    public static void initilizeSound(){
-        baseWaveSound.start();
-        note1Sound.start();
-        note2Sound.start();
-        note3Sound.start();
-        
-    }
+    
     public void setScaleFactor(float scaleFactor) {
         this.scaleFactor = scaleFactor;
         if (isSine) {
@@ -347,6 +326,36 @@ public class DrawingSurface extends JPanel {
     public void pause() {
         isPlaying = false;
     }
+    
+    /**
+     * AUDIO LOGIC
+     */
+    
+    private final AudioThreading baseWaveSound = new AudioThreading();
+    private final AudioThreading note1Sound = new AudioThreading();
+    private final AudioThreading note2Sound = new AudioThreading();
+    private final AudioThreading note3Sound = new AudioThreading();
+    
+    public void initilizeSound(){
+        if(isSine){
+            baseWaveSound.stopAudio();
+            note1Sound.stopAudio();
+            note2Sound.stopAudio();
+            note3Sound.stopAudio();
+            setWaveType("Sine");
+        }
+        else if(isSquare){
+            baseWaveSound.stopAudio();
+            note1Sound.stopAudio();
+            note2Sound.stopAudio();
+            note3Sound.stopAudio();
+            setWaveType("Square");
+        }
+        baseWaveSound.start();
+        note1Sound.start();
+        note2Sound.start();
+        note3Sound.start();
+    }
 
     /**
      * ANIMATION LOGIC
@@ -360,16 +369,7 @@ public class DrawingSurface extends JPanel {
             }
         });
     }
-/*
-    public void playAudios() {
-        File file = new File("src\\audioscope\\100hzSineWaveSample.wav");
-        Media media = new Media(file.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
 
-        mediaPlayer.play();
-
-    }
-*/
     private void updateAnimation() {
         long currentTime = System.nanoTime();
         float deltaTime = (currentTime - lastTime) / 1_000_000_000.0f;

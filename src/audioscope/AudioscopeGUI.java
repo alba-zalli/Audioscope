@@ -48,8 +48,7 @@ public class AudioscopeGUI extends javax.swing.JFrame {
         wrappingPanel.add(surface, java.awt.BorderLayout.CENTER);
         wrappingPanel.revalidate();//refresh layout
         wrappingPanel.repaint();
-        DrawingSurface.initilizeSound();
-
+        surface.initilizeSound();
     }
 /*
     public void playAudios() {
