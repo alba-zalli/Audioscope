@@ -7,7 +7,7 @@ package audioscope.PlayWaveClasses;
 import javax.sound.sampled.*;
 
 /**
- *
+ * HI :3
  * @author cunpl
  */
 public class AudioThreading extends Thread {
