@@ -3,17 +3,10 @@
 	<head>
 		<title>Audioscope</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-		<link rel="stylesheet" href="assets/css/main.css"/>
-	        <noscript>
-		      <link rel="stylesheet" href="assets/css/noscript.css"/>
-	        </noscript>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload">
-
-		<!-- Wrapper -->
-		<div id="wrapper">
-
 
 		<!-- Header with Top Navigation Bar -->
 		<header id="header" class="alt">
@@ -28,16 +21,16 @@
 			</nav>
 		</header>
 
-		<!-- Intro Section -->
+		<!-- What is Audioscope Section -->
 		<section id="intro" class="main">
 			<div class="spotlight">
 				<div class="content">
 					<header class="major">
 						<h2>What is Audioscope</h2>
 					</header>
-					<p>Audioscope creates a visual and audio representation of sound waves, allowing the user to manually add frequencies or choose a chord preset that displays multiple harmonious frequencies at once. It's a great tool for students of music and physics to learn about wave interactions.</p>
+					<p>Audioscope is an interactive Java-based application that visually and aurally represents sound waves. Users can manually input individual frequencies or select from preset chords, which generates overlapping waveforms. The application serves as an educational tool for students exploring the physics of sound and musical harmony.</p>
 				</div>
-				<span class="image"><img src="images/pic01.jpg" alt="Audioscope Visualization" /></span>
+				<span class="image"><img src="images/audioscope-visual.jpg" alt="Audioscope Visualization" /></span>
 			</div>
 		</section>
 
@@ -46,10 +39,11 @@
 			<header class="major">
 				<h2>Demo</h2>
 			</header>
-			<p>Use the button below to launch a local copy of Audioscope or view a simulated video if your browser does not support Java execution.</p>
+			<p>Click below to try a live version of Audioscope via CheerpJ (Java in the browser). Make sure JavaScript is enabled and your browser supports Java bytecode emulation.</p>
 			<ul class="actions special">
-				<li><a href="demo.html" class="button">Launch Demo</a></li>
+				<li><button onclick="cheerpjInit(); cheerpjRunJar('lib/Audioscope.jar');" class="button">Launch Audioscope</button></li>
 			</ul>
+			<script src="https://cjrtnc.leaningtech.com/loader.js"></script>
 		</section>
 
 		<!-- Download Section -->
@@ -57,8 +51,9 @@
 			<header class="major">
 				<h2>Download</h2>
 			</header>
-			<p>Download Audioscope and its dependencies to run it locally on your computer.</p>
+			<p>You can download Audioscope as a standalone Java archive file or a complete development package.</p>
 			<ul class="actions special">
+				<li><a href="lib/Audioscope.jar" class="button" download>Download .JAR</a></li>
 				<li><a href="Audioscope.zip" class="button" download>Download Full Package</a></li>
 			</ul>
 		</section>
@@ -68,13 +63,12 @@
 			<header class="major">
 				<h2>Read the Manual</h2>
 			</header>
-			<p><a href="manual.pdf" target="_blank">Click here</a> to view or download the Audioscope User Manual (PDF).</p>
+			<p>The user manual explains how to run and explore Audioscope features. <a href="manual.pdf" target="_blank">Click here to view the manual (PDF)</a>.</p>
 		</section>
-		</div>
 
 		<!-- Footer -->
 		<footer id="footer">
-			<p>&copy; Alba Zalli. Design adapted from HTML5 UP Stellar. Images & content by Alba Zalli.</p>
+			<p>&copy; Alba Zalli. Design adapted from HTML5 UP Stellar. All rights reserved.</p>
 		</footer>
 
 		<!-- Scripts -->
