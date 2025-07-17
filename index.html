@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Audioscope</title>
@@ -8,16 +8,16 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin: 2rem;
+      margin-top: 50px;
     }
     #launch {
       font-size: 1.2rem;
       padding: 10px 20px;
-      background-color: #4CAF50;
+      background-color: #007bff;
       color: white;
       border: none;
+      border-radius: 6px;
       cursor: pointer;
-      border-radius: 5px;
     }
   </style>
 </head>
@@ -27,10 +27,10 @@
   <button id="launch">Launch Audioscope</button>
 
   <script>
-    document.getElementById('launch').onclick = function() {
+    document.getElementById("launch").addEventListener("click", function () {
       cheerpjInit();
       cheerpjRunJar("Audioscope.jar");
-    };
+    });
   </script>
 </body>
 </html>
