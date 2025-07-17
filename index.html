@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Audioscope Demo</title>
-  <!-- Use the recommended latest loader -->
+  <!-- CheerpJ 4.2 runtime -->
   <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
 </head>
 <body>
@@ -14,26 +14,26 @@
     window.onload = async () => {
       const status = document.getElementById("status");
 
-      // Wait for the runtime to be present
+      // Wait until cheerpjInit becomes available
       let retries = 0;
-      while (typeof cheerpjInit !== "function" && retries < 15) {
-        await new Promise(r => setTimeout(r, 200));
+      while (typeof cheerpjInit !== "function" && retries < 20) {
+        await new Promise(res => setTimeout(res, 200));
         retries++;
       }
 
       if (typeof cheerpjInit !== "function") {
-        status.textContent = "Failed to load CheerpJ runtime.";
+        status.textContent = "Failed to load CheerpJ 4.2 runtime.";
         return;
       }
 
       try {
-        status.textContent = "Initializing runtime...";
+        status.textContent = "Initializing CheerpJ...";
         await cheerpjInit();
 
         status.textContent = "Loading JAR...";
         await cheerpjLoadJar("Audioscope-fixed.jar");
 
-        status.textContent = "Launching main...";
+        status.textContent = "Running main class...";
         await cheerpjRunMain("audioscope.StartScreen", []);
 
         status.textContent = "Application launched!";
