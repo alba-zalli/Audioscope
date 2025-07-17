@@ -29,19 +29,24 @@
   <div id="app-container"></div>
 
   <script>
-    // Initialize CheerpJ
-    cheerpjInit();
+    window.onload = function () {
+      // Wait for loader.js to be available
+      if (typeof cheerpjInit !== "function") {
+        console.error("CheerpJ runtime not loaded.");
+        return;
+      }
 
-    // Optional: create a visual container for GUI apps
-    cheerpjCreateDisplay(800, 600).then(canvas => {
-      document.getElementById("app-container").appendChild(canvas);
-    });
+      // Initialize CheerpJ
+      cheerpjInit();
 
-    // Load and run the JAR file
-    // Make sure Audioscope.jar is in the same directory
-    setTimeout(() => {
-      cheerpjRunJar("Audioscope.jar");
-    }, 1500); // Delay gives time for runtime init
+      // Create a GUI display canvas for Swing/JavaFX
+      cheerpjCreateDisplay(800, 600).then(canvas => {
+        document.getElementById("app-container").appendChild(canvas);
+
+        // Now load and run the JAR file
+        cheerpjRunJar("Audioscope.jar");
+      });
+    };
   </script>
 </body>
 </html>
