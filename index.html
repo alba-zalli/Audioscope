@@ -3,47 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Audioscope Demo</title>
-  <script src="https://cjrtnc.leaningtech.com/loader.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2em;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-  </style>
+  <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
 </head>
 <body>
   <h1>Audioscope</h1>
-  <p id="status">CheerpJ not initialized yet.</p>
-  <button id="beginButton">Launch App</button>
+  <p id="status">Loading CheerpJ runtime...</p>
 
   <script>
-    window.addEventListener("load", function() {
+    window.addEventListener("load", () => {
       const status = document.getElementById("status");
-      const button = document.getElementById("beginButton");
 
-      // Optional: update status when CheerpJ runtime is ready
-      if (typeof cheerpjInit !== "function") {
-        status.textContent = "❌ Failed to load CheerpJ runtime.";
-        button.disabled = true;
-        return;
+      function waitForCheerpJ(callback) {
+        let retries = 0;
+        const interval = setInterval(() => {
+          if (typeof cheerpjInit === "function" && typeof cheerpjLoadJar === "function") {
+            clearInterval(interval);
+            callback();
+          } else if (retries++ > 20) {
+            clearInterval(interval);
+            status.textContent = "❌ Failed to load CheerpJ runtime environment.";
+          }
+        }, 300);
       }
 
-      status.textContent = "✅ CheerpJ runtime is ready. Click 'Launch App'.";
-
-      button.addEventListener("click", function(e) {
-        e.preventDefault(); // if inside a form — safe to keep
-
-        status.textContent = "🚀 Launching Java app...";
+      waitForCheerpJ(() => {
+        status.textContent = "✅ CheerpJ loaded. Initializing...";
 
         cheerpjInit();
-        setTimeout(function () {
-          cheerpjRunJar("Audioscope-fixed.jar"); // Make sure this file exists in the same directory
-        }, 1000);
+
+        setTimeout(() => {
+          status.textContent = "📦 Loading JAR...";
+          cheerpjLoadJar("Audioscope-fixed.jar").then(() => {
+            status.textContent = "🚀 Running main class...";
+            cheerpjRunMain("audioscope.StartScreen", []);
+            status.textContent = "✅ Application launched!";
+          }).catch((err) => {
+            console.error(err);
+            status.textContent = "❌ Error loading JAR: " + err.message;
+          });
+        }, 1000); // Wait a second after init
       });
     });
   </script>
