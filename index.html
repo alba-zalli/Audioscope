@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Audioscope Demo</title>
-  <script src="https://cjrtnc.leaningtech.com/loader.js"></script>
+  <meta charset="UTF-8">
+  <title>Audioscope Java App</title>
+
+  <!-- Load CheerpJ runtime -->
+  <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      padding: 2rem;
+      text-align: center;
+    }
+    #app-container {
+      margin-top: 2rem;
+      display: inline-block;
+      border: 1px solid #ccc;
+      background: white;
+    }
+  </style>
 </head>
 <body>
   <h1>Audioscope</h1>
-  <p>Loading the Java application...</p>
+  <p>Launching Java application in your browser...</p>
+
+  <div id="app-container"></div>
 
   <script>
+    // Initialize CheerpJ
     cheerpjInit();
-    // Launch the JAR
-    cheerpjRunJar("Audioscope.jar");
+
+    // Optional: create a visual container for GUI apps
+    cheerpjCreateDisplay(800, 600).then(canvas => {
+      document.getElementById("app-container").appendChild(canvas);
+    });
+
+    // Load and run the JAR file
+    // Make sure Audioscope.jar is in the same directory
+    setTimeout(() => {
+      cheerpjRunJar("Audioscope.jar");
+    }, 1500); // Delay gives time for runtime init
   </script>
 </body>
 </html>
