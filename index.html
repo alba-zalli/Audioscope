@@ -3,31 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>Audioscope Demo</title>
-  <script src="https://cjrtnc.leaningtech.com/3.4/loader.js"></script>
+  <!-- Use the recommended latest loader -->
+  <script src="https://cjrtnc.leaningtech.com/latest/loader.js"></script>
 </head>
 <body>
   <h1>Audioscope</h1>
-  <p id="status">Initializing CheerpJ...</p>
+  <p id="status">Loading CheerpJ runtime...</p>
 
   <script>
-    window.onload = () => {
-      const s = document.getElementById("status");
+    window.onload = async () => {
+      const status = document.getElementById("status");
+
+      // Wait for the runtime to be present
+      let retries = 0;
+      while (typeof cheerpjInit !== "function" && retries < 15) {
+        await new Promise(r => setTimeout(r, 200));
+        retries++;
+      }
+
       if (typeof cheerpjInit !== "function") {
-        s.textContent = "CheerpJ runtime failed to load (CDN issue?).";
+        status.textContent = "Failed to load CheerpJ runtime.";
         return;
       }
 
-      cheerpjInit();
-      s.textContent = "Loading JAR...";
-      cheerpjLoadJar("Audioscope-fixed.jar")
-        .then(() => {
-          s.textContent = "Launching main...";
-          cheerpjRunMain("audioscope.StartScreen", []);
-        })
-        .catch(e => {
-          console.error(e);
-          s.textContent = "Error: " + e.message;
-        });
+      try {
+        status.textContent = "Initializing runtime...";
+        await cheerpjInit();
+
+        status.textContent = "Loading JAR...";
+        await cheerpjLoadJar("Audioscope-fixed.jar");
+
+        status.textContent = "Launching main...";
+        await cheerpjRunMain("audioscope.StartScreen", []);
+
+        status.textContent = "Application launched!";
+      } catch (err) {
+        console.error(err);
+        status.textContent = "Error: " + err.message;
+      }
     };
   </script>
 </body>
