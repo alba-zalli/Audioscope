@@ -18,6 +18,20 @@
   <p>Launching Java application in your browser...</p>
 
   <script>
+  window.onload = function () {
+    cheerpjInit();
+
+    // Load all JARs
+    Promise.all([
+      cheerpjLoadJar("lib/AbsoluteLayout.jar"),
+      cheerpjLoadJar("lib/flatlaf-3.6.jar"),
+      cheerpjLoadJar("Audioscope.jar")
+    ]).then(() => {
+      cheerpjRunMain("audioscope.StartScreen", []);
+    }).catch(e => {
+      console.error("Failed to load JARs:", e);
+    });
+  };
     window.onload = function () {
       if (typeof cheerpjInit !== "function") {
         console.error("CheerpJ runtime not loaded.");
