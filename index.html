@@ -1,35 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Audioscope</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Audioscope</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
 
-    .download-button {
-      display: inline-block;
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #007acc;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 20px;
-    }
+		<!-- Navigation -->
+		<header id="header">
+			<h1><a href="#">Audioscope</a></h1>
+			<nav>
+				<ul>
+					<li><a href="#intro">What is Audioscope</a></li>
+					<li><a href="#demo">Demo</a></li>
+					<li><a href="#download">Download</a></li>
+					<li><a href="#manual">Read the Manual</a></li>
+				</ul>
+			</nav>
+		</header>
 
-    .download-button:hover {
-      background-color: #005ea1;
-    }
-  </style>
-</head>
-<body>
-  <h1>Audioscope</h1>
-  <p>Click below to download the Audioscope Java program:</p>
-  <a href="Audioscope.zip" class="download-button" download>Download Audioscope.zip</a>
-</body>
+		<!-- Intro Section -->
+		<section id="intro" class="main">
+			<div class="spotlight">
+				<div class="content">
+					<header class="major">
+						<h2>What is Audioscope</h2>
+					</header>
+					<p>Audioscope creates a visual and audio representation of sound waves, allowing the user to manually add frequencies or choose a chord preset that displays multiple harmonious frequencies at once. It's a great tool for students of music and physics to learn about wave interactions.</p>
+				</div>
+				<span class="image"><img src="images/pic01.jpg" alt="Audioscope Visualization" /></span>
+			</div>
+		</section>
+
+		<!-- Demo Section -->
+		<section id="demo" class="main special">
+			<header class="major">
+				<h2>Demo</h2>
+			</header>
+			<p>Use the button below to launch a local copy of Audioscope or view a simulated video if your browser does not support Java execution.</p>
+			<ul class="actions special">
+				<li><a href="demo.html" class="button">Launch Demo</a></li>
+			</ul>
+		</section>
+
+		<!-- Download Section -->
+		<section id="download" class="main special">
+			<header class="major">
+				<h2>Download</h2>
+			</header>
+			<p>Download Audioscope and its dependencies to run it locally on your computer.</p>
+			<ul class="actions special">
+				<li><a href="Audioscope.zip" class="button" download>Download Full Package</a></li>
+			</ul>
+		</section>
+
+		<!-- Manual Section -->
+		<section id="manual" class="main">
+			<header class="major">
+				<h2>Read the Manual</h2>
+			</header>
+			<p><a href="manual.pdf" target="_blank">Click here</a> to view or download the Audioscope User Manual (PDF).</p>
+		</section>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<p>&copy; Alba Zalli. Design adapted from HTML5 UP Stellar. Images & content by Alba Zalli.</p>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
