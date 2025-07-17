@@ -10,24 +10,24 @@
   <p id="status">Initializing CheerpJ...</p>
 
   <script>
-    window.onload = function() {
+    window.onload = () => {
+      const s = document.getElementById("status");
       if (typeof cheerpjInit !== "function") {
-        document.getElementById("status").textContent = "Failed to load CheerpJ runtime.";
+        s.textContent = "CheerpJ runtime failed to load (CDN issue?).";
         return;
       }
 
       cheerpjInit();
-      document.getElementById("status").textContent = "Loading JAR...";
-
-      // Load your JAR explicitly
-      cheerpjLoadJar("Audioscope-fixed.jar").then(() => {
-        document.getElementById("status").textContent = "Running main...";
-        // Run your StartScreen main class
-        cheerpjRunMain("audioscope.StartScreen", [])
-      }).catch(err => {
-        console.error("Error loading or running JAR:", err);
-        document.getElementById("status").textContent = "Error: " + err;
-      });
+      s.textContent = "Loading JAR...";
+      cheerpjLoadJar("Audioscope-fixed.jar")
+        .then(() => {
+          s.textContent = "Launching main...";
+          cheerpjRunMain("audioscope.StartScreen", []);
+        })
+        .catch(e => {
+          console.error(e);
+          s.textContent = "Error: " + e.message;
+        });
     };
   </script>
 </body>
