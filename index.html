@@ -1,36 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Audioscope</title>
-  <script src="https://cjrtnc.leaningtech.com/2.3/loader.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
-    #launch {
-      font-size: 1.2rem;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-  </style>
+  <title>Audioscope Demo</title>
+  <script src="https://cjrtnc.leaningtech.com/loader.js"></script>
 </head>
 <body>
   <h1>Audioscope</h1>
-  <p>Click below to launch the app:</p>
-  <button id="launch">Launch Audioscope</button>
+  <p>Loading the Java application...</p>
 
   <script>
-    document.getElementById("launch").addEventListener("click", function () {
-      cheerpjInit();
-      cheerpjRunJar("Audioscope.jar");
-    });
+    cheerpjInit();
+    // Launch the JAR
+    cheerpjRunJar("Audioscope.jar");
   </script>
 </body>
 </html>
