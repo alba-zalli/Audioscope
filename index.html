@@ -2,48 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Audioscope Demo</title>
-  <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
+  <title>Audioscope</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .download-button {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+
+    .download-button:hover {
+      background-color: #005ea1;
+    }
+  </style>
 </head>
 <body>
   <h1>Audioscope</h1>
-  <p id="status">Loading CheerpJ runtime...</p>
-
-  <script>
-    window.addEventListener("load", () => {
-      const status = document.getElementById("status");
-
-      function waitForCheerpJ(callback) {
-        let retries = 0;
-        const interval = setInterval(() => {
-          if (typeof cheerpjInit === "function" && typeof cheerpjLoadJar === "function") {
-            clearInterval(interval);
-            callback();
-          } else if (retries++ > 20) {
-            clearInterval(interval);
-            status.textContent = "❌ Failed to load CheerpJ runtime environment.";
-          }
-        }, 300);
-      }
-
-      waitForCheerpJ(() => {
-        status.textContent = "✅ CheerpJ loaded. Initializing...";
-
-        cheerpjInit();
-
-        setTimeout(() => {
-          status.textContent = "📦 Loading JAR...";
-          cheerpjLoadJar("Audioscope-fixed.jar").then(() => {
-            status.textContent = "🚀 Running main class...";
-            cheerpjRunMain("audioscope.StartScreen", []);
-            status.textContent = "✅ Application launched!";
-          }).catch((err) => {
-            console.error(err);
-            status.textContent = "❌ Error loading JAR: " + err.message;
-          });
-        }, 1000); // Wait a second after init
-      });
-    });
-  </script>
+  <p>Click below to download the Audioscope Java program:</p>
+  <a href="Audioscope.jar" class="download-button" download>Download Audioscope.jar</a>
 </body>
 </html>
