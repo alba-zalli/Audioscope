@@ -3,28 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Audioscope Demo</title>
-  <script src="https://cjrtnc.leaningtech.com/loader.js"></script>
+  <script src="https://cjrtnc.leaningtech.com/3.4/loader.js"></script>
 </head>
 <body>
   <h1>Audioscope</h1>
   <p id="status">Initializing CheerpJ...</p>
 
   <script>
-    // Wait for the CheerpJ runtime to load
-    window.onload = function () {
-      if (typeof cheerpjInit === "undefined") {
+    window.onload = function() {
+      if (typeof cheerpjInit !== "function") {
         document.getElementById("status").textContent = "Failed to load CheerpJ runtime.";
         return;
       }
 
-      // Initialize CheerpJ
       cheerpjInit();
+      document.getElementById("status").textContent = "Loading JAR...";
 
-      // Load the JAR after a short delay to ensure init completes
-      setTimeout(function () {
-        document.getElementById("status").textContent = "Launching app...";
-        cheerpjRunJar("Audioscope-fixed.jar");
-      }, 1000);
+      // Load your JAR explicitly
+      cheerpjLoadJar("Audioscope-fixed.jar").then(() => {
+        document.getElementById("status").textContent = "Running main...";
+        // Run your StartScreen main class
+        cheerpjRunMain("audioscope.StartScreen", [])
+      }).catch(err => {
+        console.error("Error loading or running JAR:", err);
+        document.getElementById("status").textContent = "Error: " + err;
+      });
     };
   </script>
 </body>
