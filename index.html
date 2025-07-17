@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Audioscope Java App</title>
-
-  <!-- Load CheerpJ runtime -->
   <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
-
   <style>
     body {
       font-family: sans-serif;
@@ -14,23 +11,14 @@
       padding: 2rem;
       text-align: center;
     }
-    #app-container {
-      margin-top: 2rem;
-      display: inline-block;
-      border: 1px solid #ccc;
-      background: white;
-    }
   </style>
 </head>
 <body>
   <h1>Audioscope</h1>
   <p>Launching Java application in your browser...</p>
 
-  <div id="app-container"></div>
-
   <script>
     window.onload = function () {
-      // Wait for loader.js to be available
       if (typeof cheerpjInit !== "function") {
         console.error("CheerpJ runtime not loaded.");
         return;
@@ -39,13 +27,11 @@
       // Initialize CheerpJ
       cheerpjInit();
 
-      // Create a GUI display canvas for Swing/JavaFX
-      cheerpjCreateDisplay(800, 600).then(canvas => {
-        document.getElementById("app-container").appendChild(canvas);
-
-        // Now load and run the JAR file
+      // Run your JAR file
+      // Make sure 'Audioscope.jar' is in the same directory as index.html
+      setTimeout(() => {
         cheerpjRunJar("Audioscope.jar");
-      });
+      }, 1000);
     };
   </script>
 </body>
