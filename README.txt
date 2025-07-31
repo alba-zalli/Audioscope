@@ -1,4 +1,4 @@
-##Audioscope 
+Audioscope 
 Alba Zalli and Ameer Abd El-Fatah
 
 TABLE OF CONTENTS
